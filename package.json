@@ -12,11 +12,16 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.38.0",
+    "class-variance-authority": "^0.7.1",
+    "msw": "^2.14.6",
     "next": "16.2.6",
     "nodemailer": "^8.0.7",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-hook-form": "^7.76.0"
+    "react-hook-form": "^7.76.0",
+    "resend": "^6.12.3"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
