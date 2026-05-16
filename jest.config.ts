@@ -9,8 +9,6 @@ const config: Config = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/$1",
-    // Force the CJS build of MSW in Jest (the .mjs builds are ESM-only and
-    // cannot be consumed by jest-runtime without experimental VM modules).
     "^msw/node$": "<rootDir>/node_modules/msw/lib/node/index.js",
     "^msw$": "<rootDir>/node_modules/msw/lib/core/index.js",
   },
@@ -20,10 +18,13 @@ const config: Config = {
     "lib/**/*.{ts,tsx}",
     "!**/*.d.ts",
   ],
-  // Allow MSW and its interceptors (published as ESM) to be transformed by SWC.
-  // next/jest already excludes node_modules; we re-open msw and @mswjs/* here.
+  // Exclude editorial tests (they use jest.ui.config.ts without MSW)
+  testPathIgnorePatterns: [
+    "/node_modules/",
+    "/__tests__/components/editorial/",
+  ],
   transformIgnorePatterns: [
-    "/node_modules/(?!(msw|@mswjs)/)",
+    "/node_modules/(?!(msw|@mswjs|rettime)/)",
   ],
 };
 

@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import MobileNav from "./MobileNav";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import FullScreenNav from "@/components/editorial/FullScreenNav";
 
 const navLinks = [
   { label: "About Us", href: "/about" },
@@ -15,12 +16,37 @@ const navLinks = [
 
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const transparent = isHome && !scrolled;
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-white border-b border-stone-200 shadow-sm">
+      <header
+        className={[
+          "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
+          transparent
+            ? "bg-transparent border-b border-transparent"
+            : "bg-white/95 backdrop-blur-sm border-b border-stone-200 shadow-md",
+        ].join(" ")}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <Link href="/" className="font-serif font-bold text-xl text-teal-primary tracking-tight">
+          <Link
+            href="/"
+            className={[
+              "font-serif font-bold text-xl tracking-tight transition-colors duration-300",
+              transparent ? "text-white" : "text-teal-primary",
+            ].join(" ")}
+          >
             CHAKE
           </Link>
 
@@ -29,7 +55,10 @@ export default function SiteHeader() {
               <Link
                 key={href}
                 href={href}
-                className="text-sm font-medium text-stone-700 hover:text-teal-primary transition-colors"
+                className={[
+                  "text-sm font-medium transition-colors duration-300",
+                  transparent ? "text-white/80 hover:text-white" : "text-stone-700 hover:text-teal-primary",
+                ].join(" ")}
               >
                 {label}
               </Link>
@@ -45,8 +74,11 @@ export default function SiteHeader() {
             </Link>
             <button
               aria-label="Open menu"
-              className="md:hidden p-2 rounded-md text-stone-600 hover:bg-stone-100"
               onClick={() => setOpen(true)}
+              className={[
+                "p-2 rounded-md transition-colors",
+                transparent ? "text-white hover:bg-white/10" : "text-stone-600 hover:bg-stone-100",
+              ].join(" ")}
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -55,7 +87,7 @@ export default function SiteHeader() {
           </div>
         </div>
       </header>
-      <MobileNav open={open} onClose={() => setOpen(false)} links={navLinks} />
+      <FullScreenNav open={open} onClose={() => setOpen(false)} links={navLinks} />
     </>
   );
 }

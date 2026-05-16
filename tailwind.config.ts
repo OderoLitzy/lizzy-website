@@ -25,6 +25,30 @@ const config: Config = {
         serif: ["var(--font-playfair)", "Georgia", "serif"],
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
+      fontSize: {
+        "editorial-sm": ["clamp(3rem,6vw,5rem)", { lineHeight: "1.05" }],
+        "editorial-md": ["clamp(4rem,8vw,6.5rem)", { lineHeight: "1" }],
+        "editorial-lg": ["clamp(5rem,10vw,8rem)", { lineHeight: "0.95" }],
+      },
+      keyframes: {
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        fadeSlideUp: {
+          from: { opacity: "0", transform: "translateY(24px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        fadeSlideIn: {
+          from: { opacity: "0", transform: "translateX(-20px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
+        },
+      },
+      animation: {
+        "marquee": "marquee 28s linear infinite",
+        "fade-slide-up": "fadeSlideUp 0.6s ease-out both",
+        "fade-slide-in": "fadeSlideIn 0.4s ease-out both",
+      },
     },
   },
   plugins: [],
