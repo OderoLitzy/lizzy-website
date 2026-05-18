@@ -13,8 +13,6 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
   const handlePrev = () => setActiveIndex((p) => (p - 1 + testimonials.length) % testimonials.length);
   const handleNext = () => setActiveIndex((p) => (p + 1) % testimonials.length);
 
-  const active = testimonials[activeIndex];
-
   return (
     <section aria-label="Testimonials" className="overflow-hidden">
       {testimonials.map((t, i) => {
@@ -39,7 +37,7 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
                 style={{ fontSize: "clamp(10rem, 20vw, 18rem)" }}
                 aria-hidden="true"
               >
-                "
+                &ldquo;
               </span>
 
               <article role="article" aria-label="testimonial" className="relative z-10">

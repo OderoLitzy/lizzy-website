@@ -1,8 +1,23 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Allow next/jest to transpile MSW and its interceptors (both ship as ESM).
-  transpilePackages: ["msw", "@mswjs/interceptors", "rettime"],
+  // Allow next/jest to transpile MSW and its ESM dependency chain.
+  transpilePackages: [
+    "msw",
+    "@mswjs/interceptors",
+    "@open-draft/deferred-promise",
+    "rettime",
+    "until-async",
+  ],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "upload.wikimedia.org",
+        pathname: "/wikipedia/commons/thumb/3/30/**",
+      },
+    ],
+  },
   async headers() {
     return [
       {

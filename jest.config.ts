@@ -24,7 +24,7 @@ const config: Config = {
     "/__tests__/components/editorial/",
   ],
   transformIgnorePatterns: [
-    "/node_modules/(?!(msw|@mswjs|rettime)/)",
+    "/node_modules/(?!(msw|@mswjs|@open-draft/deferred-promise|rettime|until-async)/)",
   ],
 };
 

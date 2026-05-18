@@ -6,27 +6,23 @@ interface Props {
 
 export default function ImpactStatsBar({ stats }: Props) {
   return (
-    <section className="bg-stone-bg border-y border-stone-200 py-12" aria-label="Impact statistics">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Section label */}
-        <p className="text-center text-xs font-bold tracking-[0.3em] uppercase text-stone-400 mb-8">
-          Impact at a glance
+    <section className="bg-white py-12" aria-label="Impact statistics">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <p className="mb-8 text-center text-xs font-bold uppercase tracking-[0.3em] text-stone-400">
+          Community momentum
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-stone-200">
-          {stats.map((stat, i) => (
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          {stats.map((stat) => (
             <div
               key={stat.label}
-              className={[
-                "flex flex-col items-center text-center px-6 py-4",
-                i % 2 === 0 ? "" : "",
-              ].join(" ")}
+              className="flex min-h-40 flex-col items-center justify-center rounded-2xl bg-stone-bg px-6 py-5 text-center ring-1 ring-stone-200"
             >
-              <p className="font-serif font-black text-amber-accent leading-none mb-2"
-                style={{ fontSize: "clamp(3rem, 6vw, 5rem)" }}>
+              <p className="mb-2 font-serif font-black leading-none text-amber-accent"
+                style={{ fontSize: "clamp(2.75rem, 6vw, 4.75rem)" }}>
                 {stat.value}
                 <span className="text-teal-primary">{stat.suffix ?? ""}</span>
               </p>
-              <p className="text-stone-500 text-xs font-bold uppercase tracking-widest">{stat.label}</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-stone-500">{stat.label}</p>
             </div>
           ))}
         </div>

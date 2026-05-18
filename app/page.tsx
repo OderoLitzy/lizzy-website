@@ -6,6 +6,7 @@ import MissionBlock from "@/components/home/MissionBlock";
 import FocusAreasGrid from "@/components/home/FocusAreasGrid";
 import TestimonialsCarousel from "@/components/home/TestimonialsCarousel";
 import CtaBanner from "@/components/home/CtaBanner";
+import SupportTrustBand from "@/components/home/SupportTrustBand";
 import { focusAreas, impactStats, testimonials } from "@/lib/content/data";
 
 export const metadata: Metadata = {
@@ -13,13 +14,13 @@ export const metadata: Metadata = {
 };
 
 const tickerPhrases = [
-  "Education for all",
-  "Women's empowerment",
-  "Youth development",
-  "Community health",
-  "Economic opportunity",
+  "Youth mentorship",
+  "Safe spaces",
+  "Girls and boys empowerment",
+  "Health education",
+  "Leadership forums",
+  "Livelihood skills",
   "Homa Bay County",
-  "Since 2018",
 ];
 
 export default function HomePage() {
@@ -30,6 +31,7 @@ export default function HomePage() {
       <ImpactStatsBar stats={impactStats} />
       <MissionBlock />
       <FocusAreasGrid areas={focusAreas} />
+      <SupportTrustBand />
       <TestimonialsCarousel testimonials={testimonials} />
       <CtaBanner />
     </>

@@ -19,7 +19,7 @@ describe("SiteFooter", () => {
 
   it("renders a copyright notice with CHAKE", () => {
     render(<SiteFooter />);
-    expect(screen.getByText(/CHAKE/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/CHAKE/i).length).toBeGreaterThan(0);
   });
 
   it("renders Donate nav link", () => {

@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import VolunteerForm from "@/components/forms/VolunteerForm";
-import { server } from "../../src/mocks/server";
+import { server } from "../../../src/mocks/server";
 import { http, HttpResponse } from "msw";
 
 describe("VolunteerForm", () => {

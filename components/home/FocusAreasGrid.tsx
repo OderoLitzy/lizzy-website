@@ -6,50 +6,48 @@ interface Props {
 
 export default function FocusAreasGrid({ areas }: Props) {
   return (
-    <section className="py-20 bg-stone-bg overflow-hidden" aria-labelledby="focus-heading">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Header row */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-4">
+    <section className="overflow-hidden bg-stone-bg py-20" aria-labelledby="focus-heading">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs font-bold tracking-[0.3em] uppercase text-amber-accent mb-3">
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-amber-accent">
               What we do
             </p>
             <h2
               id="focus-heading"
-              className="font-serif font-black text-teal-dark leading-tight"
+              className="font-serif font-black leading-tight text-teal-dark"
               style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
             >
-              Our Focus Areas
+              Programs young people can feel.
             </h2>
           </div>
-          <p className="text-stone-500 text-sm max-w-xs leading-relaxed">
-            Five interconnected pillars that address the root causes of inequality in Homa Bay County.
+          <p className="max-w-sm text-sm leading-relaxed text-stone-600">
+            Clear, practical pillars for the issues families raise every day: health, confidence, safety, leadership, and livelihoods.
           </p>
         </div>
 
-        {/* Horizontal scroll on mobile, grid on md+ */}
-        <div className="flex md:grid md:grid-cols-3 lg:grid-cols-5 gap-0 md:gap-px overflow-x-auto scrollbar-none -mx-4 px-4 md:mx-0 md:px-0">
+        <div className="-mx-4 flex gap-4 overflow-x-auto px-4 scrollbar-none md:mx-0 md:grid md:grid-cols-3 md:px-0 lg:grid-cols-5">
           {areas.map((area, i) => (
             <article
               key={area.title}
-              className="relative flex-shrink-0 w-72 md:w-auto bg-white border border-stone-100 p-6 hover:bg-teal-dark hover:border-teal-dark group transition-all duration-300 cursor-default"
+              className="group relative min-h-72 w-72 flex-shrink-0 cursor-default overflow-hidden rounded-2xl border border-stone-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-teal-primary hover:shadow-xl md:w-auto"
             >
-              {/* Oversized number watermark */}
               <span
-                className="absolute top-3 right-3 font-serif font-black text-stone-100 group-hover:text-white/10 leading-none select-none transition-colors duration-300"
+                className="absolute right-3 top-3 select-none font-serif font-black leading-none text-stone-100 transition-colors duration-300 group-hover:text-amber-100"
                 style={{ fontSize: "clamp(4rem, 8vw, 6rem)" }}
                 aria-hidden="true"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
 
-              <span className="text-3xl mb-5 block">{area.icon}</span>
-              <h3 className="font-serif text-base font-bold text-teal-dark group-hover:text-white mb-2 transition-colors duration-300 relative z-10">
+              <span className="relative z-10 mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-3xl">{area.icon}</span>
+              <h3 className="relative z-10 mb-3 font-serif text-lg font-bold text-teal-dark">
                 {area.title}
               </h3>
-              <p className="text-stone-500 group-hover:text-teal-100 text-xs leading-relaxed transition-colors duration-300 relative z-10">
+              <p className="relative z-10 text-sm leading-6 text-stone-600">
                 {area.description}
               </p>
+              <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-amber-accent via-teal-primary to-amber-light" aria-hidden="true" />
             </article>
           ))}
         </div>
