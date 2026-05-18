@@ -6,11 +6,11 @@ import { teamMembers, coreValues } from "@/lib/content/data";
 
 export default function AboutPage() {
   return (
-    <main>
+    <div className="pt-16">
       <OrgStory />
       <TeamGrid members={teamMembers} />
       <GovernanceSection />
       <ValuesGrid values={coreValues} />
-    </main>
+    </div>
   );
 }

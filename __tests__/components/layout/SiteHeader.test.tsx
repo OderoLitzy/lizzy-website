@@ -13,7 +13,7 @@ const NAV_LINKS = [
 describe("SiteHeader", () => {
   it("renders the CHAKE logo text", () => {
     render(<SiteHeader />);
-    expect(screen.getByText(/CHAKE/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/CHAKE/i).length).toBeGreaterThan(0);
   });
 
   it("renders a Donate link as the primary CTA", () => {

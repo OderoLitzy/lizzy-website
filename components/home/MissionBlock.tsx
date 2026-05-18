@@ -1,28 +1,43 @@
 export default function MissionBlock() {
   return (
-    <section className="bg-white py-16 px-4">
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-        {/* Mission */}
-        <div className="border-l-4 border-teal-primary pl-6">
-          <h2 className="font-serif text-2xl font-bold text-teal-dark mb-4">
-            Our Mission
-          </h2>
-          <p className="text-gray-700 leading-relaxed">
-            A dignified and responsible community where youth, women and vulnerable
-            groups enjoy the fullness of life through education, economic opportunity,
-            health, technology, and social support.
-          </p>
-        </div>
+    <section
+      className="relative overflow-hidden bg-white px-4 py-20"
+      aria-labelledby="mission-heading"
+    >
+      <div className="relative z-10 mx-auto max-w-6xl">
+        <h2
+          id="mission-heading"
+          className="mb-8 text-xs font-bold uppercase tracking-[0.3em] text-amber-accent"
+        >
+          Why We Exist
+        </h2>
 
-        {/* Vision */}
-        <div>
-          <h2 className="font-serif text-2xl font-bold text-teal-dark mb-4">
-            Our Vision
-          </h2>
-          <p className="text-gray-700 leading-relaxed">
-            An empowered community where every person — regardless of gender, age, or
-            background — can access the resources and support they need to thrive.
-          </p>
+        <blockquote className="mb-12 font-serif font-bold leading-tight text-teal-dark"
+          style={{ fontSize: "clamp(1.75rem, 4vw, 3rem)" }}>
+          We believe young people in Kenya should not have to leave their community behind to find confidence, safety, opportunity, and the{" "}
+          <em className="not-italic text-amber-accent">fullness of life</em>.
+        </blockquote>
+
+        <div className="grid gap-5 border-t border-stone-200 pt-8 md:grid-cols-3">
+          <div className="rounded-2xl bg-teal-dark p-6 text-white">
+            <h3 className="mb-2 text-xs font-bold uppercase tracking-widest text-amber-light">Vision</h3>
+            <p className="text-base leading-relaxed text-teal-50">
+              An empowered community where every person — regardless of gender, age, or
+              background — can access the resources and support they need to thrive.
+            </p>
+          </div>
+          <div className="rounded-2xl bg-amber-50 p-6">
+            <h3 className="mb-2 text-xs font-bold uppercase tracking-widest text-amber-accent">How</h3>
+            <p className="text-base leading-relaxed text-stone-700">
+              Through school seminars, safe spaces, referrals, leadership forums, and practical skills programs.
+            </p>
+          </div>
+          <div className="rounded-2xl bg-teal-50 p-6">
+            <h3 className="mb-2 text-xs font-bold uppercase tracking-widest text-teal-primary">Where</h3>
+            <p className="text-base leading-relaxed text-stone-700">
+              Community-rooted work across Homa Bay County, built with families, schools, churches, and local partners.
+            </p>
+          </div>
         </div>
       </div>
     </section>

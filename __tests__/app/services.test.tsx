@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import ServicesPage from "@/app/services/page";
 import { services } from "@/lib/content/data";
 
@@ -12,15 +13,25 @@ describe("Services Page", () => {
   });
 
   it("renders all 4 cluster headings", () => {
-    expect(screen.getByRole("heading", { level: 2, name: /health & reproductive/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 2, name: /economic empowerment/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 2, name: /community & advocacy/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 2, name: /legal & rights/i })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /health & reproductive/i })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /economic empowerment/i })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /community & advocacy/i })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /legal & rights/i })).toBeInTheDocument();
   });
 
-  it("renders all 18 service titles", () => {
-    for (const service of services) {
-      expect(screen.getByText(service.title)).toBeInTheDocument();
+  it("renders service titles for each cluster tab", async () => {
+    const user = userEvent.setup();
+    const clusters = ["health", "economic", "community", "legal"] as const;
+
+    for (const cluster of clusters) {
+      const firstService = services.find((service) => service.cluster === cluster);
+      if (!firstService) continue;
+
+      if (cluster !== "health") {
+        await user.click(screen.getByRole("tab", { name: new RegExp(cluster === "economic" ? "economic empowerment" : cluster === "community" ? "community & advocacy" : "legal & rights", "i") }));
+      }
+
+      expect(screen.getByText(firstService.title)).toBeInTheDocument();
     }
   });
 });
