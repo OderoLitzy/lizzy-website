@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 @theme {
+  --color-surface-section: #f0fdfa;
+  --color-surface-hero: #fffbeb;
+  --color-surface-footer: #1c1917;
+  --color-text-body: #44403c;
   --color-teal-primary: #0f766e;
   --color-teal-light: #14b8a6;
   --color-teal-dark: #0d5c57;
@@ -35,14 +39,24 @@ body {
   from { opacity: 0; transform: translateX(-20px); }
   to   { opacity: 1; transform: translateX(0); }
 }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
 .animate-fade-slide-up { animation: fadeSlideUp 0.6s ease-out both; }
 .animate-fade-slide-in  { animation: fadeSlideIn 0.4s ease-out both; }
+.animate-fade-in-up     { animation: fadeInUp 0.5s ease-out both; }
 
 /* ── Honour motion preferences ───────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee         { animation-play-state: paused; }
   .animate-fade-slide-up,
-  .animate-fade-slide-in   { animation: none; opacity: 1; transform: none; }
+  .animate-fade-slide-in,
+  .animate-fade-in-up      { animation: none; opacity: 1; transform: none; }
   *, *::before, *::after   { transition-duration: 0.01ms !important; }
 }
 

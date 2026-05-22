@@ -8,6 +8,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        surface: {
+          section: "#f0fdfa",
+          hero: "#fffbeb",
+          footer: "#1c1917",
+        },
+        text: {
+          body: "#44403c",
+        },
         teal: {
           primary: "#0f766e",
           light: "#14b8a6",
@@ -43,11 +51,20 @@ const config: Config = {
           from: { opacity: "0", transform: "translateX(-20px)" },
           to: { opacity: "1", transform: "translateX(0)" },
         },
+        fadeInUp: {
+          from: { opacity: "0", transform: "translateY(20px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        slideInRight: {
+          from: { transform: "translateX(100%)" },
+          to: { transform: "translateX(0)" },
+        },
       },
       animation: {
         "marquee": "marquee 28s linear infinite",
         "fade-slide-up": "fadeSlideUp 0.6s ease-out both",
         "fade-slide-in": "fadeSlideIn 0.4s ease-out both",
+        "fade-in-up": "fadeInUp 0.5s ease-out both",
       },
     },
   },
