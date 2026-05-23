@@ -21,13 +21,25 @@ describe("FullScreenNav", () => {
     const dialog = screen.getByRole("dialog");
     expect(dialog).toBeInTheDocument();
     expect(dialog).not.toHaveAttribute("aria-hidden", "true");
+    expect(dialog).toHaveClass("fixed", "inset-0", "bg-teal-dark", "origin-top-right", "scale-100");
   });
 
   it("renders all navigation links when open", () => {
     render(<FullScreenNav open={true} onClose={() => {}} links={links} />);
-    links.forEach(({ label }) => {
-      expect(screen.getByText(label)).toBeInTheDocument();
+    links.forEach(({ label }, index) => {
+      const link = screen.getByRole("link", { name: label });
+      expect(link).toHaveClass("font-serif", "text-white", "animate-fade-slide-in", "motion-reduce:animate-none");
+      expect(link).toHaveStyle({ animationDelay: `${index * 60}ms` });
     });
+  });
+
+  it("pins the amber Donate CTA at the bottom of the overlay", () => {
+    render(<FullScreenNav open={true} onClose={() => {}} links={links} />);
+
+    const donateLink = screen.getByRole("link", { name: /donate now/i });
+    expect(donateLink).toHaveAttribute("href", "/donate");
+    expect(donateLink).toHaveClass("bg-amber-accent");
+    expect(donateLink.parentElement).toHaveClass("mt-auto");
   });
 
   it("fires onClose when Escape key is pressed", () => {

@@ -16,7 +16,7 @@ export default function MissionBlock() {
           aria-hidden="true"
           className="mb-2 block font-serif text-7xl font-black leading-none text-amber-accent"
         >
-          "
+          &ldquo;
         </span>
 
         <blockquote className="mb-12 border-l-4 border-amber-accent pl-6 font-serif text-2xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">

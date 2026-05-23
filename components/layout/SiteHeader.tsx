@@ -18,11 +18,11 @@ export default function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "/";
   const isHome = pathname === "/";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    const onScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
@@ -38,9 +38,9 @@ export default function SiteHeader() {
     <>
       <header
         className={[
-          "fixed top-0 left-0 right-0 z-40 transition-shadow duration-200",
+          "fixed top-0 left-0 right-0 z-40 transition-shadow transition-colors duration-200",
           onHero
-            ? "bg-white/85 backdrop-blur-sm border-b border-white/50"
+            ? "bg-transparent"
             : "bg-white/95 backdrop-blur-sm border-b border-stone-200",
           scrolled ? "shadow-md" : "shadow-sm",
         ].join(" ")}
@@ -50,7 +50,7 @@ export default function SiteHeader() {
             href="/"
             className={[
               "font-serif font-bold text-xl tracking-tight transition-colors duration-300",
-              onHero ? "text-teal-dark" : "text-teal-primary",
+              onHero ? "text-white" : "text-teal-primary",
             ].join(" ")}
           >
             CHAKE
@@ -63,7 +63,7 @@ export default function SiteHeader() {
                 href={href}
                 className={[
                   "text-sm font-medium transition-colors duration-300",
-                  onHero ? "text-stone-700 hover:text-teal-primary" : "text-stone-700 hover:text-teal-primary",
+                  onHero ? "text-white hover:text-amber-accent" : "text-stone-700 hover:text-teal-primary",
                 ].join(" ")}
               >
                 {label}
@@ -86,7 +86,7 @@ export default function SiteHeader() {
               onClick={() => setOpen(true)}
               className={[
                 "p-2 rounded-md transition-colors",
-                onHero ? "text-stone-700 hover:bg-stone-100" : "text-stone-600 hover:bg-stone-100",
+                onHero ? "text-white hover:bg-white/10" : "text-stone-700 hover:bg-stone-100",
               ].join(" ")}
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

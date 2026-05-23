@@ -54,7 +54,26 @@ describe("SiteHeader", () => {
     expect(menuButton).toHaveFocus();
   });
 
-  it("promotes the header shadow after scrolling past 10 pixels", () => {
+  it("is transparent with white navigation over the home hero", () => {
+    Object.defineProperty(window, "scrollY", {
+      value: 0,
+      writable: true,
+      configurable: true,
+    });
+
+    render(<SiteHeader />);
+
+    const header = screen.getByRole("banner");
+    expect(header).toHaveClass("bg-transparent");
+    expect(header).not.toHaveClass("border-b");
+
+    expect(screen.getByRole("link", { name: "CHAKE" })).toHaveClass("text-white");
+    expect(screen.getByRole("link", { name: "About Us" })).toHaveClass("text-white");
+    expect(screen.getByRole("button", { name: /open menu/i })).toHaveClass("text-white");
+    expect(screen.getByRole("link", { name: /donate/i })).toHaveClass("bg-amber-accent");
+  });
+
+  it("transitions to a white bordered header after scrolling past the hero threshold", () => {
     Object.defineProperty(window, "scrollY", {
       value: 0,
       writable: true,
@@ -69,9 +88,13 @@ describe("SiteHeader", () => {
     expect(header).toHaveClass("duration-200");
     expect(header).not.toHaveClass("shadow-md");
 
-    window.scrollY = 11;
+    window.scrollY = 81;
     fireEvent.scroll(window);
 
+    expect(header).toHaveClass("bg-white/95");
+    expect(header).toHaveClass("border-b");
+    expect(screen.getByRole("link", { name: "CHAKE" })).toHaveClass("text-teal-primary");
+    expect(screen.getByRole("button", { name: /open menu/i })).toHaveClass("text-stone-700");
     expect(header).toHaveClass("shadow-md");
     expect(header).not.toHaveClass("shadow-sm");
   });

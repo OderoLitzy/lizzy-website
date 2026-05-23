@@ -26,7 +26,7 @@ describe("MissionBlock", () => {
     render(<MissionBlock />);
 
     const quote = screen.getByText(/young people in Kenya/i).closest("blockquote");
-    const quoteMark = screen.getByText('"', { selector: "[aria-hidden='true']" });
+    const quoteMark = screen.getByText("“", { selector: "[aria-hidden='true']" });
 
     expect(quote).toHaveClass(
       "border-l-4",
