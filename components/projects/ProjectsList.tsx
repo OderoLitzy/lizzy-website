@@ -1,4 +1,5 @@
 import type { Project } from "@/lib/content/types";
+import AnimatedSection from "@/components/animation/AnimatedSection";
 import ProjectCard from "./ProjectCard";
 
 interface ProjectsListProps {
@@ -17,8 +18,10 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
             Active Projects
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {active.map((project) => (
-              <ProjectCard key={project.title} project={project} />
+            {active.map((project, index) => (
+              <AnimatedSection key={project.title} delay={index * 80}>
+                <ProjectCard project={project} />
+              </AnimatedSection>
             ))}
           </div>
         </section>
@@ -30,8 +33,10 @@ export default function ProjectsList({ projects }: ProjectsListProps) {
             Upcoming Projects
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {upcoming.map((project) => (
-              <ProjectCard key={project.title} project={project} />
+            {upcoming.map((project, index) => (
+              <AnimatedSection key={project.title} delay={index * 80}>
+                <ProjectCard project={project} />
+              </AnimatedSection>
             ))}
           </div>
         </section>

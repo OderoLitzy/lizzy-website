@@ -24,7 +24,7 @@ export default function AnimatedCounter({
   suffix = "",
   duration = 1200,
 }: AnimatedCounterProps) {
-  const [reducedMotion, setReducedMotion] = useState(prefersReducedMotion);
+  const [reducedMotion] = useState(prefersReducedMotion);
   const [displayValue, setDisplayValue] = useState(() => (
     prefersReducedMotion() ? value : 0
   ));
@@ -33,22 +33,7 @@ export default function AnimatedCounter({
   });
 
   useEffect(() => {
-    setReducedMotion(prefersReducedMotion());
-  }, []);
-
-  useEffect(() => {
-    if (reducedMotion) {
-      setDisplayValue(value);
-      return;
-    }
-
-    if (!inView) {
-      setDisplayValue(0);
-      return;
-    }
-
-    if (duration <= 0) {
-      setDisplayValue(value);
+    if (reducedMotion || !inView || duration <= 0) {
       return;
     }
 
@@ -69,5 +54,9 @@ export default function AnimatedCounter({
     return () => window.cancelAnimationFrame(frameId);
   }, [duration, inView, reducedMotion, value]);
 
-  return <span ref={ref}>{displayValue}{suffix}</span>;
+  const renderedValue = reducedMotion || (inView && duration <= 0)
+    ? value
+    : displayValue;
+
+  return <span ref={ref}>{renderedValue}{suffix}</span>;
 }

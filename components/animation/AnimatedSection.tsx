@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties, ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useInView } from "@/hooks/useInView";
 
 interface AnimatedSectionProps {
@@ -23,12 +23,8 @@ export function AnimatedSection({
   delay = 0,
   style,
 }: AnimatedSectionProps) {
-  const [reducedMotion, setReducedMotion] = useState(prefersReducedMotion);
+  const [reducedMotion] = useState(prefersReducedMotion);
   const { ref, inView } = useInView<HTMLDivElement>({ disabled: reducedMotion });
-
-  useEffect(() => {
-    setReducedMotion(prefersReducedMotion());
-  }, []);
 
   const animationClass = inView && !reducedMotion ? "animate-fade-in-up" : "";
   const classes = [className, animationClass].filter(Boolean).join(" ");

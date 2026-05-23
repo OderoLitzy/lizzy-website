@@ -1,7 +1,12 @@
 import type { FocusArea } from "@/lib/content/types";
+import AnimatedSection from "@/components/animation/AnimatedSection";
 
 interface Props {
   areas: FocusArea[];
+}
+
+function focusTileLayoutClass(index: number) {
+  return index < 3 ? "md:col-span-2" : "md:col-span-3";
 }
 
 export default function FocusAreasGrid({ areas }: Props) {
@@ -26,29 +31,33 @@ export default function FocusAreasGrid({ areas }: Props) {
           </p>
         </div>
 
-        <div className="-mx-4 flex gap-4 overflow-x-auto px-4 scrollbar-none md:mx-0 md:grid md:grid-cols-3 md:px-0 lg:grid-cols-5">
+        <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 scrollbar-none md:mx-0 md:grid md:grid-cols-6 md:px-0">
           {areas.map((area, i) => (
-            <article
+            <AnimatedSection
               key={area.title}
-              className="group relative min-h-72 w-72 flex-shrink-0 cursor-default overflow-hidden rounded-2xl border border-stone-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-teal-primary hover:shadow-xl md:w-auto"
+              className={`w-[85vw] flex-shrink-0 snap-center md:w-auto ${focusTileLayoutClass(i)}`}
+              delay={i * 80}
             >
-              <span
-                className="absolute right-3 top-3 select-none font-serif font-black leading-none text-stone-100 transition-colors duration-300 group-hover:text-amber-100"
-                style={{ fontSize: "clamp(4rem, 8vw, 6rem)" }}
-                aria-hidden="true"
+              <article
+                className="group relative min-h-72 cursor-default overflow-hidden rounded-2xl border border-l-4 border-t-4 border-stone-200 border-l-transparent border-t-amber-accent bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-l-amber-accent hover:border-t-transparent hover:shadow-xl"
               >
-                {String(i + 1).padStart(2, "0")}
-              </span>
+                <span
+                  className="pointer-events-none absolute right-3 top-3 select-none font-serif font-black leading-none text-teal-primary/10 transition-colors duration-300 group-hover:text-teal-primary/15"
+                  style={{ fontSize: "clamp(4rem, 8vw, 6rem)" }}
+                  aria-hidden="true"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
 
-              <span className="relative z-10 mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-3xl">{area.icon}</span>
-              <h3 className="relative z-10 mb-3 font-serif text-lg font-bold text-teal-dark">
-                {area.title}
-              </h3>
-              <p className="relative z-10 text-sm leading-6 text-stone-600">
-                {area.description}
-              </p>
-              <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-amber-accent via-teal-primary to-amber-light" aria-hidden="true" />
-            </article>
+                <span className="relative z-10 mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-3xl">{area.icon}</span>
+                <h3 className="relative z-10 mb-3 font-serif text-lg font-bold text-teal-dark">
+                  {area.title}
+                </h3>
+                <p className="relative z-10 text-sm leading-6 text-stone-600">
+                  {area.description}
+                </p>
+              </article>
+            </AnimatedSection>
           ))}
         </div>
       </div>

@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import EnrollmentForm from "@/components/forms/EnrollmentForm";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Apply for Training",
+export const metadata: Metadata = pageMetadata({
+  pageName: "Apply for Training",
+  path: "/enroll",
   description:
     "Apply for a CHAKE skills development or empowerment program. Open to youth and women in Homa Bay County.",
-};
+});
 
 export default function EnrollPage() {
   return (

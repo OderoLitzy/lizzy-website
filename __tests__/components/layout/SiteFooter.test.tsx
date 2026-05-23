@@ -27,4 +27,39 @@ describe("SiteFooter", () => {
     const links = screen.getAllByRole("link", { name: /donate/i });
     expect(links.length).toBeGreaterThan(0);
   });
+
+  it("uses the editorial teal footer layout", () => {
+    render(<SiteFooter />);
+
+    expect(screen.getByRole("contentinfo")).toHaveClass("bg-teal-dark");
+    expect(screen.getByTestId("footer-columns")).toHaveClass("grid-cols-1", "md:grid-cols-3");
+    expect(screen.getByText("CHAKE", { selector: "[aria-hidden='true']" })).toHaveClass("text-teal-primary/20");
+    expect(screen.getAllByText("CHAKE").some((element) => element.classList.contains("text-white"))).toBe(true);
+    expect(screen.getByText("Navigation")).toHaveClass("text-white");
+    expect(screen.getByText("Contact")).toHaveClass("text-white");
+    expect(screen.getByText(/Empowering youth/i)).toHaveClass("text-teal-50");
+    expect(screen.getByText(/kechangeambassadors@gmail\.com/i).closest("ul")).toHaveClass("text-teal-50");
+  });
+
+  it("renders email and phone as contact links", () => {
+    render(<SiteFooter />);
+
+    expect(screen.getByRole("link", { name: /kechangeambassadors@gmail\.com/i })).toHaveAttribute(
+      "href",
+      "mailto:kechangeambassadors@gmail.com",
+    );
+    expect(screen.getByRole("link", { name: /\+254 769 629 620/i })).toHaveAttribute("href", "tel:+254769629620");
+  });
+
+  it("renders social links as accessible icon-only links with amber hover", () => {
+    render(<SiteFooter />);
+
+    for (const name of ["Instagram", "Facebook", "WhatsApp"]) {
+      const link = screen.getByRole("link", { name });
+      expect(link).toHaveClass("hover:text-amber-accent");
+      expect(link).toHaveTextContent("");
+      expect(link.querySelector("svg")).toBeInTheDocument();
+      expect(link.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
+    }
+  });
 });

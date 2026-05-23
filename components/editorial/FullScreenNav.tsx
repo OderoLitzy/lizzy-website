@@ -14,9 +14,10 @@ export default function FullScreenNav({ open, onClose, links }: Props) {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
+    if (!open) return;
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
-  }, [onClose]);
+  }, [onClose, open]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -25,6 +26,7 @@ export default function FullScreenNav({ open, onClose, links }: Props) {
 
   return (
     <div
+      id="site-navigation-dialog"
       role="dialog"
       aria-modal="true"
       aria-label="Site navigation"

@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import SiteHeader from "@/components/layout/SiteHeader";
 
 const NAV_LINKS = [
@@ -36,5 +36,43 @@ describe("SiteHeader", () => {
     expect(
       screen.getByRole("button", { name: /open menu|toggle menu/i })
     ).toBeInTheDocument();
+  });
+
+  it("closes the navigation dialog with Escape and returns focus to the trigger", () => {
+    render(<SiteHeader />);
+
+    const menuButton = screen.getByRole("button", { name: /open menu/i });
+    menuButton.focus();
+    fireEvent.click(menuButton);
+
+    const dialog = screen.getByRole("dialog", { name: /site navigation/i });
+    expect(dialog).toHaveClass("pointer-events-auto");
+
+    fireEvent.keyDown(document, { key: "Escape" });
+
+    expect(dialog).toHaveClass("pointer-events-none");
+    expect(menuButton).toHaveFocus();
+  });
+
+  it("promotes the header shadow after scrolling past 10 pixels", () => {
+    Object.defineProperty(window, "scrollY", {
+      value: 0,
+      writable: true,
+      configurable: true,
+    });
+
+    render(<SiteHeader />);
+
+    const header = screen.getByRole("banner");
+    expect(header).toHaveClass("shadow-sm");
+    expect(header).toHaveClass("transition-shadow");
+    expect(header).toHaveClass("duration-200");
+    expect(header).not.toHaveClass("shadow-md");
+
+    window.scrollY = 11;
+    fireEvent.scroll(window);
+
+    expect(header).toHaveClass("shadow-md");
+    expect(header).not.toHaveClass("shadow-sm");
   });
 });

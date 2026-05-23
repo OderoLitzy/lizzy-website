@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import VolunteerForm from "@/components/forms/VolunteerForm";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Volunteer" };
+export const metadata: Metadata = pageMetadata({
+  pageName: "Volunteer",
+  path: "/volunteer",
+  description:
+    "Volunteer with Change Ambassadors Kenya and use your skills to support youth, women, and vulnerable communities in Homa Bay County.",
+});
 
 export default function VolunteerPage() {
   return (

@@ -13,11 +13,10 @@ export function useInView<T extends Element = HTMLElement>(
 ) {
   const { disabled = false, threshold = 0.15, triggerOnce = true } = options;
   const ref = useRef<T | null>(null);
-  const [inView, setInView] = useState(disabled);
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     if (disabled) {
-      setInView(true);
       return;
     }
 
@@ -46,5 +45,5 @@ export function useInView<T extends Element = HTMLElement>(
     return () => observer.disconnect();
   }, [disabled, threshold, triggerOnce]);
 
-  return { ref, inView };
+  return { ref, inView: disabled || inView };
 }

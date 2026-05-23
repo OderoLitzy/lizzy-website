@@ -32,6 +32,27 @@ describe("ServiceClusterTabs", () => {
     expect(screen.getByRole("tabpanel")).toBeInTheDocument();
   });
 
+  it("uses the accepted sticky, scrollable tab and two-column service layout", () => {
+    render(<ServiceClusterTabs services={services} />);
+
+    const tablist = screen.getByRole("tablist");
+    expect(tablist).toHaveClass("sticky", "overflow-x-auto");
+    expect(screen.getByRole("tab", { selected: true }).querySelector("span")).toHaveClass(
+      "bg-amber-accent",
+      "transition-all",
+    );
+    expect(screen.getByRole("tabpanel").querySelector("ul")).toHaveClass(
+      "grid",
+      "grid-cols-1",
+      "sm:grid-cols-2",
+    );
+    expect(
+      screen.getByRole("button", {
+        name: /life skills & sexual and reproductive health education/i,
+      }),
+    ).toHaveAttribute("aria-expanded", "false");
+  });
+
   it("marks the active tab as selected", async () => {
     const user = userEvent.setup();
     render(<ServiceClusterTabs services={services} />);
@@ -49,5 +70,19 @@ describe("ServiceClusterTabs", () => {
     await user.click(screen.getByRole("tab", { name: /economic/i }));
     // Only one tabpanel should be visible at a time
     expect(screen.getAllByRole("tabpanel")).toHaveLength(1);
+  });
+
+  it("expands a service description when its title is clicked", async () => {
+    const user = userEvent.setup();
+    const service = services.find((item) => item.cluster === "health");
+    expect(service).toBeDefined();
+
+    render(<ServiceClusterTabs services={services} />);
+
+    expect(screen.queryByText(service!.description)).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: service!.title }));
+
+    expect(screen.getByText(service!.description)).toBeInTheDocument();
   });
 });

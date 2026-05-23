@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Testimonial } from "@/lib/content/types";
 
 interface TestimonialsCarouselProps {
@@ -9,66 +9,98 @@ interface TestimonialsCarouselProps {
 
 export default function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const handlePrev = () => setActiveIndex((p) => (p - 1 + testimonials.length) % testimonials.length);
   const handleNext = () => setActiveIndex((p) => (p + 1) % testimonials.length);
 
+  useEffect(() => {
+    if (isPaused || testimonials.length <= 1) {
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      setActiveIndex((p) => (p + 1) % testimonials.length);
+    }, 6000);
+
+    return () => window.clearInterval(interval);
+  }, [isPaused, testimonials.length]);
+
   return (
-    <section aria-label="Testimonials" className="overflow-hidden">
-      {testimonials.map((t, i) => {
-        const isTeal = i % 2 === 0;
-        return (
+    <section
+      aria-label="Testimonials"
+      tabIndex={0}
+      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-t-4 border-amber-accent focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-accent/50"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onKeyDown={(event) => {
+        if (event.key === "ArrowLeft") {
+          handlePrev();
+        }
+        if (event.key === "ArrowRight") {
+          handleNext();
+        }
+      }}
+    >
+      <div className="relative">
+        {testimonials.map((t, i) => (
           <div
             key={t.author}
             aria-hidden={i !== activeIndex}
             className={[
-              "transition-opacity duration-500",
-              i === activeIndex ? "block opacity-100" : "hidden opacity-0",
-              isTeal ? "bg-teal-dark" : "bg-stone-bg",
+              "w-full transition-all duration-700 ease-out",
+              i % 2 === 0 ? "bg-teal-dark" : "bg-stone-bg",
+              i === activeIndex
+                ? "relative translate-x-0 opacity-100"
+                : [
+                    "absolute inset-0 pointer-events-none opacity-0",
+                    i < activeIndex ? "-translate-x-8" : "translate-x-8",
+                  ].join(" "),
             ].join(" ")}
           >
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20 relative">
-              {/* Giant decorative quote mark */}
+            <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:py-32">
               <span
-                className={[
-                  "absolute -top-4 left-0 font-serif font-black leading-none select-none pointer-events-none",
-                  isTeal ? "text-white/5" : "text-teal-primary/10",
-                ].join(" ")}
-                style={{ fontSize: "clamp(10rem, 20vw, 18rem)" }}
+                className="pointer-events-none absolute -top-8 left-2 select-none font-serif font-black leading-none text-amber-accent/25 sm:-top-12"
+                style={{ fontSize: "clamp(12rem, 28vw, 24rem)" }}
                 aria-hidden="true"
               >
                 &ldquo;
               </span>
 
-              <article role="article" aria-label="testimonial" className="relative z-10">
+              <article role="article" aria-label="testimonial" className="relative z-10 max-w-5xl">
                 <blockquote
                   className={[
-                    "font-serif font-bold leading-tight mb-10",
-                    isTeal ? "text-white" : "text-teal-dark",
+                    "mb-10 font-serif font-bold leading-tight",
+                    i % 2 === 0 ? "text-white" : "text-teal-dark",
                   ].join(" ")}
-                  style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.5rem)" }}
+                  style={{ fontSize: "clamp(2.25rem, 5vw, 4.5rem)" }}
                 >
                   {t.quote}
                 </blockquote>
                 <div className="flex items-center gap-4">
-                  <div className={`w-10 h-px ${isTeal ? "bg-amber-accent" : "bg-teal-primary"}`} aria-hidden="true" />
+                  <div className="w-10 h-px bg-amber-accent" aria-hidden="true" />
                   <div>
-                    <p className={`font-bold text-sm ${isTeal ? "text-amber-accent" : "text-teal-primary"}`}>
+                    <p
+                      className={[
+                        "text-sm font-bold uppercase tracking-[0.18em]",
+                        i % 2 === 0 ? "text-amber-accent" : "text-teal-primary",
+                      ].join(" ")}
+                    >
                       {t.author}
                     </p>
-                    <p className={`text-xs ${isTeal ? "text-teal-100" : "text-stone-500"}`}>
-                      {t.role} — {t.location}
+                    <p className={["text-xs", i % 2 === 0 ? "text-white/75" : "text-stone-600"].join(" ")}>
+                      {t.role} | {t.location}
                     </p>
                   </div>
                 </div>
               </article>
             </div>
           </div>
-        );
-      })}
+        ))}
+      </div>
 
       {/* Controls */}
-      <div className="bg-teal-dark border-t border-white/10 py-4 px-4 sm:px-6">
+      <div className="border-t border-amber-accent/20 bg-stone-950 px-4 py-4 sm:px-6">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <div className="flex gap-2">
             {testimonials.map((_, i) => (
@@ -78,7 +110,7 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
                 aria-label={`Go to testimonial ${i + 1}`}
                 className={[
                   "w-2 h-2 rounded-full transition-all duration-300",
-                  i === activeIndex ? "bg-amber-accent w-6" : "bg-white/20 hover:bg-white/40",
+                  i === activeIndex ? "bg-amber-accent w-6" : "bg-white/40 hover:bg-white/70",
                 ].join(" ")}
               />
             ))}
@@ -87,16 +119,16 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
             <button
               onClick={handlePrev}
               aria-label="Previous testimonial"
-              className="w-10 h-10 flex items-center justify-center border border-white/20 text-white hover:bg-white/10 transition-colors"
+              className="w-10 h-10 flex items-center justify-center border border-white/30 text-white hover:bg-white/10 transition-colors"
             >
-              ←
+              &lsaquo;
             </button>
             <button
               onClick={handleNext}
               aria-label="Next testimonial"
               className="w-10 h-10 flex items-center justify-center bg-amber-accent text-white hover:bg-amber-light transition-colors"
             >
-              →
+              &rsaquo;
             </button>
           </div>
         </div>

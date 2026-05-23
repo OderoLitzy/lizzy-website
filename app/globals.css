@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@source inline("[clip-path:polygon(0_58%,100%_0,100%_100%,0_100%)]");
+
 @theme {
   --color-surface-section: #f0fdfa;
   --color-surface-hero: #fffbeb;
@@ -8,9 +10,17 @@
   --color-teal-primary: #0f766e;
   --color-teal-light: #14b8a6;
   --color-teal-dark: #0d5c57;
-  --color-amber-accent: #d97706;
+  --color-amber-accent: #b45309;
   --color-amber-light: #f59e0b;
   --color-stone-bg: #fafaf9;
+  --text-editorial-sm: clamp(3rem, 6vw, 5rem);
+  --text-editorial-sm--line-height: 1.05;
+  --text-editorial-md: clamp(4rem, 8vw, 6.5rem);
+  --text-editorial-md--line-height: 1;
+  --text-editorial-lg: clamp(5rem, 10vw, 8rem);
+  --text-editorial-lg--line-height: 0.95;
+  --text-editorial-xl: clamp(5.5rem, 12vw, 8rem);
+  --text-editorial-xl--line-height: 0.9;
 }
 
 :root {
@@ -28,7 +38,7 @@ body {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-.animate-marquee { animation: marquee 28s linear infinite; }
+.animate-marquee { animation: marquee 25s linear infinite; }
 
 /* ── Scroll-triggered reveals ────────────────────────── */
 @keyframes fadeSlideUp {
