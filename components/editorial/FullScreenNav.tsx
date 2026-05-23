@@ -14,9 +14,10 @@ export default function FullScreenNav({ open, onClose, links }: Props) {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
+    if (!open) return;
     document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
-  }, [onClose]);
+  }, [onClose, open]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -25,14 +26,15 @@ export default function FullScreenNav({ open, onClose, links }: Props) {
 
   return (
     <div
+      id="site-navigation-dialog"
       role="dialog"
       aria-modal="true"
       aria-label="Site navigation"
       aria-hidden={!open}
       className={[
         "fixed inset-0 z-50 bg-teal-dark flex flex-col px-8 py-8",
-        "transition-opacity duration-300",
-        open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
+        "origin-top-right transition-all duration-300 motion-reduce:transition-none",
+        open ? "opacity-100 pointer-events-auto scale-100" : "opacity-0 pointer-events-none scale-95",
       ].join(" ")}
     >
       {/* Header row */}
@@ -56,8 +58,8 @@ export default function FullScreenNav({ open, onClose, links }: Props) {
             key={href}
             href={href}
             onClick={onClose}
-            className="font-serif text-4xl sm:text-5xl font-bold text-white/80 hover:text-white hover:translate-x-2 transition-all duration-200 py-2"
-            style={{ transitionDelay: open ? `${i * 60}ms` : "0ms" }}
+            className="font-serif text-4xl sm:text-5xl font-bold text-white hover:text-amber-accent hover:translate-x-2 transition-all duration-200 py-2 animate-fade-slide-in motion-reduce:animate-none motion-reduce:transform-none"
+            style={{ animationDelay: open ? `${i * 60}ms` : "0ms" }}
           >
             {label}
           </Link>
@@ -65,7 +67,7 @@ export default function FullScreenNav({ open, onClose, links }: Props) {
       </nav>
 
       {/* Donate CTA */}
-      <div className="pt-8 border-t border-white/10">
+      <div className="mt-auto pt-8 border-t border-white/10">
         <Link
           href="/donate"
           onClick={onClose}

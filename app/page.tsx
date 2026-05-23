@@ -8,10 +8,14 @@ import TestimonialsCarousel from "@/components/home/TestimonialsCarousel";
 import CtaBanner from "@/components/home/CtaBanner";
 import SupportTrustBand from "@/components/home/SupportTrustBand";
 import { focusAreas, impactStats, testimonials } from "@/lib/content/data";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Home",
-};
+export const metadata: Metadata = pageMetadata({
+  pageName: "Home",
+  path: "/",
+  description:
+    "Change Ambassadors Kenya supports youth, women, and vulnerable families in Homa Bay County through mentorship, health education, leadership, and livelihood pathways.",
+});
 
 const tickerPhrases = [
   "Youth mentorship",

@@ -18,12 +18,31 @@ export default function MobileNav({ open, onClose, links }: Props) {
     return () => document.removeEventListener("keydown", handleKey);
   }, [open, onClose]);
 
-  if (!open) return null;
-
   return (
-    <div className="fixed inset-0 z-50 md:hidden" role="dialog" aria-modal="true" aria-label="Mobile navigation">
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
-      <div className="absolute right-0 top-0 h-full w-72 bg-white shadow-xl flex flex-col p-6">
+    <div
+      className={[
+        "fixed inset-0 z-50 md:hidden transition-opacity duration-300",
+        open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
+      ].join(" ")}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Mobile navigation"
+      aria-hidden={!open}
+    >
+      <div
+        className={[
+          "absolute inset-0 bg-black/40 transition-opacity duration-300",
+          open ? "opacity-100" : "opacity-0",
+        ].join(" ")}
+        onClick={onClose}
+      />
+      <div
+        className={[
+          "absolute right-0 top-0 h-full w-72 bg-white shadow-xl flex flex-col p-6",
+          "transition-transform duration-300 ease-in-out",
+          open ? "translate-x-0" : "translate-x-full",
+        ].join(" ")}
+      >
         <button
           aria-label="Close menu"
           className="self-end p-2 rounded-md text-stone-600 hover:bg-stone-100"

@@ -1,4 +1,5 @@
 import type { CoreValue } from "@/lib/content/types";
+import AnimatedSection from "@/components/animation/AnimatedSection";
 
 interface ValuesGridProps {
   values: CoreValue[];
@@ -12,17 +13,16 @@ export default function ValuesGrid({ values }: ValuesGridProps) {
           Our Values
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {values.map((value) => (
-            <div
-              key={value.title}
-              className="bg-white rounded-lg shadow p-6 flex flex-col gap-3"
-            >
-              <span className="text-3xl" aria-hidden="true">
-                {value.icon}
-              </span>
-              <h3 className="font-semibold text-gray-900 text-lg">{value.title}</h3>
-              <p className="text-gray-600 text-sm">{value.description}</p>
-            </div>
+          {values.map((value, index) => (
+            <AnimatedSection key={value.title} delay={index * 80}>
+              <div className="bg-white rounded-lg shadow p-6 flex flex-col gap-3">
+                <span className="text-3xl" aria-hidden="true">
+                  {value.icon}
+                </span>
+                <h3 className="font-semibold text-gray-900 text-lg">{value.title}</h3>
+                <p className="text-gray-600 text-sm">{value.description}</p>
+              </div>
+            </AnimatedSection>
           ))}
         </div>
       </div>

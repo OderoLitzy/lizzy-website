@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
 import ProjectsList from "@/components/projects/ProjectsList";
 import { projects } from "@/lib/content/data";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  pageName: "Projects",
+  path: "/projects",
+  description:
+    "Browse CHAKE's active and upcoming community projects supporting education, health, leadership, and economic opportunity in Homa Bay County.",
+});
 
 export default function ProjectsPage() {
   return (

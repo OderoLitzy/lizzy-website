@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import SiteHeader from "@/components/layout/SiteHeader";
 
 const NAV_LINKS = [
@@ -36,5 +36,66 @@ describe("SiteHeader", () => {
     expect(
       screen.getByRole("button", { name: /open menu|toggle menu/i })
     ).toBeInTheDocument();
+  });
+
+  it("closes the navigation dialog with Escape and returns focus to the trigger", () => {
+    render(<SiteHeader />);
+
+    const menuButton = screen.getByRole("button", { name: /open menu/i });
+    menuButton.focus();
+    fireEvent.click(menuButton);
+
+    const dialog = screen.getByRole("dialog", { name: /site navigation/i });
+    expect(dialog).toHaveClass("pointer-events-auto");
+
+    fireEvent.keyDown(document, { key: "Escape" });
+
+    expect(dialog).toHaveClass("pointer-events-none");
+    expect(menuButton).toHaveFocus();
+  });
+
+  it("is transparent with white navigation over the home hero", () => {
+    Object.defineProperty(window, "scrollY", {
+      value: 0,
+      writable: true,
+      configurable: true,
+    });
+
+    render(<SiteHeader />);
+
+    const header = screen.getByRole("banner");
+    expect(header).toHaveClass("bg-transparent");
+    expect(header).not.toHaveClass("border-b");
+
+    expect(screen.getByRole("link", { name: "CHAKE" })).toHaveClass("text-white");
+    expect(screen.getByRole("link", { name: "About Us" })).toHaveClass("text-white");
+    expect(screen.getByRole("button", { name: /open menu/i })).toHaveClass("text-white");
+    expect(screen.getByRole("link", { name: /donate/i })).toHaveClass("bg-amber-accent");
+  });
+
+  it("transitions to a white bordered header after scrolling past the hero threshold", () => {
+    Object.defineProperty(window, "scrollY", {
+      value: 0,
+      writable: true,
+      configurable: true,
+    });
+
+    render(<SiteHeader />);
+
+    const header = screen.getByRole("banner");
+    expect(header).toHaveClass("shadow-sm");
+    expect(header).toHaveClass("transition-shadow");
+    expect(header).toHaveClass("duration-200");
+    expect(header).not.toHaveClass("shadow-md");
+
+    window.scrollY = 81;
+    fireEvent.scroll(window);
+
+    expect(header).toHaveClass("bg-white/95");
+    expect(header).toHaveClass("border-b");
+    expect(screen.getByRole("link", { name: "CHAKE" })).toHaveClass("text-teal-primary");
+    expect(screen.getByRole("button", { name: /open menu/i })).toHaveClass("text-stone-700");
+    expect(header).toHaveClass("shadow-md");
+    expect(header).not.toHaveClass("shadow-sm");
   });
 });

@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
 import ServiceClusterTabs from "@/components/editorial/ServiceClusterTabs";
 import { services } from "@/lib/content/data";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  pageName: "Services",
+  path: "/services",
+  description:
+    "Discover CHAKE services across mentorship, community outreach, health education, leadership forums, and livelihood training.",
+});
 
 export default function ServicesPage() {
   return (

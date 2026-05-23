@@ -16,29 +16,37 @@ const TABS: { cluster: Cluster; label: string }[] = [
   { cluster: "legal", label: "Legal & Rights" },
 ];
 
+const servicePanelId = (service: Service) =>
+  `service-${service.cluster}-${service.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+
 export default function ServiceClusterTabs({ services }: ServiceClusterTabsProps) {
   const [active, setActive] = useState<Cluster>("health");
+  const [expandedService, setExpandedService] = useState<string | null>(null);
 
   const activeServices = services.filter((s) => s.cluster === active);
+  const selectCluster = (cluster: Cluster) => {
+    setActive(cluster);
+    setExpandedService(null);
+  };
 
   return (
     <div>
-      {/* Tab bar */}
       <div
         role="tablist"
         aria-label="Service clusters"
-        className="flex overflow-x-auto scrollbar-none border-b border-stone-200 gap-0"
+        className="sticky top-20 z-20 flex gap-0 overflow-x-auto scrollbar-none border-b border-stone-200 bg-white/95 backdrop-blur"
       >
         {TABS.map(({ cluster, label }) => {
           const isActive = cluster === active;
           return (
             <button
+              type="button"
               key={cluster}
               role="tab"
               id={`tab-${cluster}`}
               aria-selected={isActive}
               aria-controls={`panel-${cluster}`}
-              onClick={() => setActive(cluster)}
+              onClick={() => selectCluster(cluster)}
               className={[
                 "shrink-0 px-5 py-3 text-sm font-semibold tracking-wide transition-colors relative whitespace-nowrap",
                 isActive
@@ -50,7 +58,7 @@ export default function ServiceClusterTabs({ services }: ServiceClusterTabsProps
               {isActive && (
                 <span
                   aria-hidden="true"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-accent"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-accent transition-all duration-300"
                 />
               )}
             </button>
@@ -58,24 +66,40 @@ export default function ServiceClusterTabs({ services }: ServiceClusterTabsProps
         })}
       </div>
 
-      {/* Tab panel */}
       <div
         role="tabpanel"
         id={`panel-${active}`}
         aria-labelledby={`tab-${active}`}
         className="py-8"
       >
-        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {activeServices.map((service) => (
-            <li key={service.title} className="flex gap-3 items-start">
-              <span
-                aria-hidden="true"
-                className="mt-1.5 w-2 h-2 rounded-full bg-teal-primary shrink-0"
-              />
-              <div>
-                <p className="font-semibold text-stone-800 text-sm">{service.title}</p>
-                <p className="text-stone-500 text-xs mt-0.5 leading-relaxed">{service.description}</p>
-              </div>
+            <li key={service.title} className="border-b border-stone-200 pb-3">
+              <button
+                type="button"
+                aria-expanded={expandedService === service.title}
+                aria-controls={servicePanelId(service)}
+                onClick={() =>
+                  setExpandedService((current) =>
+                    current === service.title ? null : service.title,
+                  )
+                }
+                className="flex w-full items-start gap-3 text-left font-semibold text-stone-800 transition-colors hover:text-teal-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-accent focus-visible:ring-offset-2"
+              >
+                <span
+                  aria-hidden="true"
+                  className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-teal-primary"
+                />
+                <span className="text-sm leading-snug">{service.title}</span>
+              </button>
+              {expandedService === service.title && (
+                <p
+                  id={servicePanelId(service)}
+                  className="ml-5 mt-2 text-xs leading-relaxed text-stone-500"
+                >
+                  {service.description}
+                </p>
+              )}
             </li>
           ))}
         </ul>

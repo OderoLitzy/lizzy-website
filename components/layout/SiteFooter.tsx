@@ -37,35 +37,35 @@ function IconWhatsApp() {
 
 export default function SiteFooter() {
   return (
-    <footer className="bg-teal-dark text-white mt-auto relative overflow-hidden">
+    <footer className="bg-teal-dark text-teal-50 mt-auto relative overflow-hidden">
       {/* CHAKE watermark */}
       <span
-        className="absolute right-0 bottom-0 font-serif font-black text-white/5 leading-none select-none pointer-events-none"
-        style={{ fontSize: "clamp(8rem, 18vw, 16rem)" }}
+        className="absolute inset-x-0 bottom-0 text-center font-serif font-black text-teal-primary/20 leading-none select-none pointer-events-none"
+        style={{ fontSize: "clamp(8rem, 24vw, 22rem)" }}
         aria-hidden="true"
       >
         CHAKE
       </span>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div data-testid="footer-columns" className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Brand */}
-          <div className="md:col-span-2">
-            <p className="font-serif text-2xl font-black mb-1 tracking-tight">CHAKE</p>
-            <p className="text-teal-light text-xs font-bold tracking-widest uppercase mb-4">
+          <div>
+            <p className="font-serif text-2xl font-black mb-1 tracking-tight text-white">CHAKE</p>
+            <p className="text-teal-50 text-xs font-bold tracking-widest uppercase mb-4">
               Change Ambassadors Kenya
             </p>
-            <p className="text-sm text-teal-100 leading-relaxed max-w-xs">
+            <p className="text-sm text-teal-50 leading-relaxed max-w-xs">
               Empowering youth, women, and vulnerable groups in Homa Bay County through education, health, and economic opportunity.
             </p>
             <div className="flex gap-4 mt-6">
-              <a href="https://instagram.com" aria-label="Instagram" className="text-teal-100 hover:text-amber-accent transition-colors">
+              <a href="https://instagram.com" aria-label="Instagram" className="text-teal-50 hover:text-amber-accent transition-colors">
                 <IconInstagram />
               </a>
-              <a href="https://facebook.com" aria-label="Facebook" className="text-teal-100 hover:text-amber-accent transition-colors">
+              <a href="https://facebook.com" aria-label="Facebook" className="text-teal-50 hover:text-amber-accent transition-colors">
                 <IconFacebook />
               </a>
-              <a href="https://wa.me/254769629620" aria-label="WhatsApp" className="text-teal-100 hover:text-amber-accent transition-colors">
+              <a href="https://wa.me/254769629620" aria-label="WhatsApp" className="text-teal-50 hover:text-amber-accent transition-colors">
                 <IconWhatsApp />
               </a>
             </div>
@@ -73,11 +73,11 @@ export default function SiteFooter() {
 
           {/* Quick Links */}
           <div>
-            <p className="font-bold mb-4 text-xs uppercase tracking-[0.25em] text-amber-accent">Navigation</p>
+            <p className="font-bold mb-4 text-xs uppercase tracking-[0.25em] text-white">Navigation</p>
             <ul className="space-y-2">
               {quickLinks.map(({ label, href }) => (
                 <li key={href}>
-                  <Link href={href} className="text-sm text-teal-100 hover:text-white transition-colors hover:translate-x-1 inline-block transition-transform">
+                  <Link href={href} className="text-sm text-teal-50 hover:text-amber-accent transition-colors hover:translate-x-1 inline-block transition-transform">
                     {label}
                   </Link>
                 </li>
@@ -87,15 +87,19 @@ export default function SiteFooter() {
 
           {/* Contact */}
           <div>
-            <p className="font-bold mb-4 text-xs uppercase tracking-[0.25em] text-amber-accent">Contact</p>
-            <ul className="space-y-3 text-sm text-teal-100">
+            <p className="font-bold mb-4 text-xs uppercase tracking-[0.25em] text-white">Contact</p>
+            <ul className="space-y-3 text-sm text-teal-50">
               <li className="flex gap-2 items-start">
                 <span className="mt-0.5 shrink-0">✉</span>
-                <span>kechangeambassadors@gmail.com</span>
+                <a href="mailto:kechangeambassadors@gmail.com" className="hover:text-amber-accent transition-colors">
+                  kechangeambassadors@gmail.com
+                </a>
               </li>
               <li className="flex gap-2 items-start">
                 <span className="mt-0.5 shrink-0">☎</span>
-                <span>+254 769 629 620</span>
+                <a href="tel:+254769629620" className="hover:text-amber-accent transition-colors">
+                  +254 769 629 620
+                </a>
               </li>
               <li className="flex gap-2 items-start">
                 <span className="mt-0.5 shrink-0">◉</span>
@@ -105,9 +109,9 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-teal-200">
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-teal-50">
           <span>© {new Date().getFullYear()} CHAKE Community Initiative. All rights reserved.</span>
-          <span className="font-serif italic text-teal-200/60">Defining limits, building futures.</span>
+          <span className="font-serif italic text-teal-50/70">Defining limits, building futures.</span>
         </div>
       </div>
     </footer>

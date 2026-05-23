@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Donate",
+export const metadata: Metadata = pageMetadata({
+  pageName: "Donate",
+  path: "/donate",
   description:
     "Support CHAKE's work empowering youth, women, and vulnerable communities in Homa Bay County. Give via M-Pesa, bank transfer, or volunteer your time.",
-};
+});
 
 export default function DonatePage() {
   return (

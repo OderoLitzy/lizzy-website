@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AnimatedSection from "@/components/animation/AnimatedSection";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Skills Development",
+export const metadata: Metadata = pageMetadata({
+  pageName: "Skills",
+  path: "/skills",
   description:
     "CHAKE skills development programs: youth entrepreneurship, agribusiness, money management, and digital literacy for Homa Bay youth.",
-};
+});
 
 const programs = [
   {
@@ -50,18 +53,17 @@ export default function SkillsPage() {
           Our Training Programs
         </h2>
         <div className="grid sm:grid-cols-2 gap-8">
-          {programs.map((program) => (
-            <article
-              key={program.title}
-              className="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 hover:shadow-md transition-shadow"
-            >
-              <h3 className="font-serif text-xl font-semibold text-teal-dark mb-3">
-                {program.title}
-              </h3>
-              <p className="text-stone-600 leading-relaxed">
-                {program.description}
-              </p>
-            </article>
+          {programs.map((program, index) => (
+            <AnimatedSection key={program.title} delay={index * 80}>
+              <article className="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 hover:shadow-md transition-shadow">
+                <h3 className="font-serif text-xl font-semibold text-teal-dark mb-3">
+                  {program.title}
+                </h3>
+                <p className="text-stone-600 leading-relaxed">
+                  {program.description}
+                </p>
+              </article>
+            </AnimatedSection>
           ))}
         </div>
       </section>

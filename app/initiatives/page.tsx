@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { focusAreas } from "@/lib/content/data";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Our Initiatives",
+export const metadata: Metadata = pageMetadata({
+  pageName: "Initiatives",
+  path: "/initiatives",
   description:
     "Explore CHAKE's five core focus areas: girl child empowerment, reproductive health, community mobilization, boys empowerment, and youth economic skills.",
-};
+});
 
 // Extended details per focus area (index-matched to focusAreas in data.ts)
 const beneficiaryDetails: string[] = [

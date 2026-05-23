@@ -1,4 +1,5 @@
 import type { Service } from "@/lib/content/types";
+import AnimatedSection from "@/components/animation/AnimatedSection";
 import ServiceCard from "./ServiceCard";
 
 interface ServicesListProps {
@@ -31,8 +32,10 @@ export default function ServicesList({ services }: ServicesListProps) {
               {CLUSTER_LABELS[cluster]}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {clusterServices.map((service) => (
-                <ServiceCard key={service.title} service={service} />
+              {clusterServices.map((service, index) => (
+                <AnimatedSection key={service.title} delay={index * 80}>
+                  <ServiceCard service={service} />
+                </AnimatedSection>
               ))}
             </div>
           </section>

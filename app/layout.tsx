@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import { pageMetadata } from "@/lib/seo";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -17,17 +18,14 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: {
-    template: "%s | CHAKE — Change Ambassadors Kenya",
-    default: "CHAKE — Change Ambassadors Kenya",
-  },
+  ...pageMetadata({
+    pageName: "Home",
+    path: "/",
+    description:
+      "Empowering youth, women, and vulnerable communities in Homa Bay County through education, health, and economic opportunity.",
+  }),
   description:
     "Empowering youth, women, and vulnerable communities in Homa Bay County through education, health, and economic opportunity.",
-  openGraph: {
-    siteName: "Change Ambassadors Kenya",
-    type: "website",
-    locale: "en_KE",
-  },
 };
 
 export default function RootLayout({
