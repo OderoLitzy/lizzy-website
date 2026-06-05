@@ -3,7 +3,8 @@ import OrgStory from "@/components/about/OrgStory";
 import TeamGrid from "@/components/about/TeamGrid";
 import GovernanceSection from "@/components/about/GovernanceSection";
 import ValuesGrid from "@/components/about/ValuesGrid";
-import { teamMembers, coreValues } from "@/lib/content/data";
+import ImageCardGrid from "@/components/visual/ImageCardGrid";
+import { teamMembers, coreValues, aboutOrganizationGallery } from "@/lib/content/data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -17,6 +18,7 @@ export default function AboutPage() {
   return (
     <div className="pt-16">
       <OrgStory />
+      <ImageCardGrid title={aboutOrganizationGallery.title} images={aboutOrganizationGallery.images} />
       <TeamGrid members={teamMembers} />
       <GovernanceSection />
       <ValuesGrid values={coreValues} />

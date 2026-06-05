@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import AboutPage from "@/app/about/page";
-import { teamMembers, coreValues } from "@/lib/content/data";
+import { teamMembers, coreValues, aboutOrganizationGallery } from "@/lib/content/data";
 
 describe("About Page", () => {
   beforeEach(() => {
@@ -25,6 +25,18 @@ describe("About Page", () => {
   it("renders all 5 core value titles", () => {
     for (const value of coreValues) {
       expect(screen.getByText(value.title)).toBeInTheDocument();
+    }
+  });
+
+  it("renders approved organization imagery without mapping it to named team portraits", () => {
+    expect(screen.getByRole("region", { name: aboutOrganizationGallery.title })).toBeInTheDocument();
+
+    for (const image of aboutOrganizationGallery.images) {
+      expect(screen.getByRole("img", { name: image.alt })).toBeInTheDocument();
+    }
+
+    for (const member of teamMembers) {
+      expect(screen.queryByRole("img", { name: new RegExp(member.name, "i") })).not.toBeInTheDocument();
     }
   });
 });

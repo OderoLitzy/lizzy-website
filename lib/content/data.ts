@@ -443,9 +443,41 @@ export const pageImageSections: PageImageSection[] = [
       imageAsset("services-human-rights-education"),
     ],
   },
+  {
+    id: "enroll-training-pathway-gallery",
+    title: "Training pathways in pictures",
+    images: [
+      imageAsset("training-caregiving-training"),
+      imageAsset("training-house-manager-training"),
+      imageAsset("training-community-work-training"),
+    ],
+  },
+  {
+    id: "volunteer-field-work-gallery",
+    title: "Volunteer work in pictures",
+    images: [
+      imageAsset("about-staff-group"),
+      imageAsset("home-youth-mentorship-session"),
+      imageAsset("training-community-work-training"),
+    ],
+  },
+  {
+    id: "donate-outcome-gallery",
+    title: "Community outcomes in pictures",
+    images: [
+      imageAsset("home-youth-community-outreach"),
+      imageAsset("services-family-planning-awareness"),
+      imageAsset("projects-youth-leadership-forum"),
+      imageAsset("training-community-work-training"),
+    ],
+  },
 ];
 
 export const homeImpactGallery = pageImageSections.find((section) => section.id === "home-impact-gallery")!;
+export const aboutOrganizationGallery = pageImageSections.find((section) => section.id === "about-organization-gallery")!;
+export const enrollTrainingPathwayGallery = pageImageSections.find((section) => section.id === "enroll-training-pathway-gallery")!;
+export const volunteerFieldWorkGallery = pageImageSections.find((section) => section.id === "volunteer-field-work-gallery")!;
+export const donateOutcomeGallery = pageImageSections.find((section) => section.id === "donate-outcome-gallery")!;
 
 export const coreValues: CoreValue[] = [
   { title: "Inclusive Leadership", description: "Participatory decision-making that reflects every voice in the community.", icon: "🫂" },

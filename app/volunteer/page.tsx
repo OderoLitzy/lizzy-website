@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import VolunteerForm from "@/components/forms/VolunteerForm";
+import ImageCardGrid from "@/components/visual/ImageCardGrid";
+import { volunteerFieldWorkGallery } from "@/lib/content/data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -11,13 +13,18 @@ export const metadata: Metadata = pageMetadata({
 
 export default function VolunteerPage() {
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-24 pb-16">
-      <p className="text-amber-accent font-semibold tracking-widest uppercase text-sm mb-2">Get Involved</p>
-      <h1 className="font-serif text-4xl font-bold text-teal-dark mb-4">Be the Change</h1>
-      <p className="text-stone-600 leading-relaxed mb-10">
-        Volunteers are the backbone of CHAKE&apos;s work. Whether you are in Homa Bay or anywhere in the world, your skills and passion can transform lives. Fill in the form below and we will match you to an opportunity that fits.
-      </p>
-      <VolunteerForm />
+    <div className="bg-stone-bg pt-16">
+      <section className="mx-auto max-w-2xl px-4 pb-12 pt-10 sm:px-6">
+        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-amber-accent">Get Involved</p>
+        <h1 className="mb-4 font-serif text-4xl font-bold text-teal-dark">Be the Change</h1>
+        <p className="text-stone-600 leading-relaxed">
+          Volunteers are the backbone of CHAKE&apos;s work. Whether you are in Homa Bay or anywhere in the world, your skills and passion can transform lives. Fill in the form below and we will match you to an opportunity that fits.
+        </p>
+      </section>
+      <ImageCardGrid title={volunteerFieldWorkGallery.title} images={volunteerFieldWorkGallery.images} />
+      <section className="mx-auto max-w-2xl px-4 py-14 sm:px-6">
+        <VolunteerForm />
+      </section>
     </div>
   );
 }

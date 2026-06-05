@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import EnrollmentForm from "@/components/forms/EnrollmentForm";
+import ImageCardGrid from "@/components/visual/ImageCardGrid";
+import { enrollTrainingPathwayGallery } from "@/lib/content/data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -22,6 +24,8 @@ export default function EnrollPage() {
           within 3 business days.
         </p>
       </section>
+
+      <ImageCardGrid title={enrollTrainingPathwayGallery.title} images={enrollTrainingPathwayGallery.images} />
 
       {/* Form */}
       <section className="max-w-2xl mx-auto px-4 py-14">

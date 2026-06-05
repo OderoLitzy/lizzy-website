@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ImageCardGrid from "@/components/visual/ImageCardGrid";
+import { donateOutcomeGallery } from "@/lib/content/data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -23,6 +25,8 @@ export default function DonatePage() {
           Homa Bay County.
         </p>
       </section>
+
+      <ImageCardGrid title={donateOutcomeGallery.title} images={donateOutcomeGallery.images} />
 
       {/* Giving Methods */}
       <section className="max-w-5xl mx-auto px-4 py-14">
