@@ -19,6 +19,22 @@ describe("Services Page", () => {
     expect(screen.getByRole("tab", { name: /legal & rights/i })).toBeInTheDocument();
   });
 
+  it("renders approved imagery for each service cluster", async () => {
+    const user = userEvent.setup();
+    const clusters = [
+      { tab: /health & reproductive/i, image: /reproductive health education/i },
+      { tab: /economic empowerment/i, image: /economic empowerment or livelihood training/i },
+      { tab: /community & advocacy/i, image: /community members gathered/i },
+      { tab: /legal & rights/i, image: /human rights education or advocacy/i },
+    ];
+
+    for (const { tab, image } of clusters) {
+      await user.click(screen.getByRole("tab", { name: tab }));
+
+      expect(screen.getByRole("img", { name: image })).toBeInTheDocument();
+    }
+  });
+
   it("renders service titles for each cluster tab", async () => {
     const user = userEvent.setup();
     const clusters = ["health", "economic", "community", "legal"] as const;
@@ -31,7 +47,18 @@ describe("Services Page", () => {
         await user.click(screen.getByRole("tab", { name: new RegExp(cluster === "economic" ? "economic empowerment" : cluster === "community" ? "community & advocacy" : "legal & rights", "i") }));
       }
 
-      expect(screen.getByText(firstService.title)).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: firstService.title }),
+      ).toBeInTheDocument();
     }
+  });
+
+  it("preserves service descriptions behind the existing expandable controls", async () => {
+    const user = userEvent.setup();
+    const firstService = services[0];
+
+    await user.click(screen.getByRole("button", { name: firstService.title }));
+
+    expect(screen.getAllByText(firstService.description).length).toBeGreaterThan(0);
   });
 });

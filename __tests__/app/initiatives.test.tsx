@@ -18,4 +18,19 @@ describe("Initiatives Page", () => {
       expect(screen.getByText(area.title)).toBeInTheDocument();
     }
   });
+
+  it("preserves existing focus area descriptions and beneficiary information", () => {
+    for (const area of focusAreas) {
+      expect(screen.getByText(area.description)).toBeInTheDocument();
+    }
+
+    expect(screen.getByText(/Primary beneficiaries are girls aged 10/)).toBeInTheDocument();
+    expect(screen.getByText(/Youth aged 15/)).toBeInTheDocument();
+  });
+
+  it("renders each focus area as image-led content with descriptive alt text", () => {
+    for (const area of focusAreas) {
+      expect(screen.getByRole("img", { name: area.image.alt })).toBeInTheDocument();
+    }
+  });
 });
