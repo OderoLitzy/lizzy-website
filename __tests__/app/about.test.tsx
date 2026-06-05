@@ -28,7 +28,7 @@ describe("About Page", () => {
     }
   });
 
-  it("renders approved organization imagery without mapping it to named team portraits", () => {
+  it("renders approved organization imagery and named team portraits", () => {
     expect(screen.getByRole("region", { name: aboutOrganizationGallery.title })).toBeInTheDocument();
 
     for (const image of aboutOrganizationGallery.images) {
@@ -36,7 +36,8 @@ describe("About Page", () => {
     }
 
     for (const member of teamMembers) {
-      expect(screen.queryByRole("img", { name: new RegExp(member.name, "i") })).not.toBeInTheDocument();
+      expect(member.image).toBeDefined();
+      expect(screen.getByRole("img", { name: member.image?.alt ?? "" })).toBeInTheDocument();
     }
   });
 });
