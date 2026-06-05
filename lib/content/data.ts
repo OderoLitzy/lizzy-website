@@ -341,7 +341,7 @@ export const approvedImageAssets: ImageMetadata[] = [
   },
 ];
 
-function imageAsset(id: string): ImageMetadata {
+export function imageAsset(id: string): ImageMetadata {
   const image = approvedImageAssets.find((asset) => asset.id === id);
 
   if (!image) {

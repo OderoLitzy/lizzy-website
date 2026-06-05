@@ -19,6 +19,15 @@ describe("Projects Page", () => {
     }
   });
 
+  it("renders approved imagery and descriptions for active projects", () => {
+    const active = projects.filter((p) => p.status === "active");
+
+    for (const project of active) {
+      expect(screen.getByRole("img", { name: project.image?.alt })).toBeInTheDocument();
+      expect(screen.getByText(project.description)).toBeInTheDocument();
+    }
+  });
+
   it("renders all 4 upcoming project titles", () => {
     const upcoming = projects.filter((p) => p.status === "upcoming");
     expect(upcoming).toHaveLength(4);

@@ -18,6 +18,19 @@ describe("Skills Page", () => {
     expect(link).toHaveAttribute("href", "/enroll");
   });
 
+  it("renders training and livelihood imagery for each skills program", () => {
+    const programImages = [
+      "CHAKE skills development training activity.",
+      "CHAKE agribusiness training or agricultural livelihood activity.",
+      "CHAKE economic empowerment or livelihood training activity.",
+      "CHAKE life skills training activity.",
+    ];
+
+    for (const alt of programImages) {
+      expect(screen.getByRole("img", { name: alt })).toBeInTheDocument();
+    }
+  });
+
   it("staggers each training program card by 80ms", () => {
     const programTitles = [
       "Youth Entrepreneurship",
