@@ -351,6 +351,8 @@ function imageAsset(id: string): ImageMetadata {
   return image;
 }
 
+export const homeHeroImage = imageAsset("home-girls-school-outreach");
+
 export const teamMembers: TeamMember[] = [
   { name: "Elizabeth Achieng' Odero", title: "Director", photoUrl: imageAsset("team-elizabeth-achieng-odero").src, image: imageAsset("team-elizabeth-achieng-odero") },
   { name: "Paskalia Glory Akinyi", title: "Program Officer", photoUrl: imageAsset("team-paskalia-glory-akinyi").src, image: imageAsset("team-paskalia-glory-akinyi") },
@@ -412,12 +414,14 @@ export const focusAreas: FocusArea[] = [
 export const pageImageSections: PageImageSection[] = [
   {
     id: "home-impact-gallery",
-    title: "Home impact gallery",
+    title: "Impact in pictures",
     images: [
+      imageAsset("about-staff-group"),
       imageAsset("home-girls-school-outreach"),
       imageAsset("home-youth-community-outreach"),
       imageAsset("home-youth-mentorship-session"),
       imageAsset("home-skills-development-overview"),
+      imageAsset("skills-skills-development"),
     ],
   },
   {
@@ -440,6 +444,8 @@ export const pageImageSections: PageImageSection[] = [
     ],
   },
 ];
+
+export const homeImpactGallery = pageImageSections.find((section) => section.id === "home-impact-gallery")!;
 
 export const coreValues: CoreValue[] = [
   { title: "Inclusive Leadership", description: "Participatory decision-making that reflects every voice in the community.", icon: "🫂" },

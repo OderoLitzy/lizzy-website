@@ -1,5 +1,6 @@
 import {
   approvedImageAssets,
+  homeImpactGallery,
   pageImageSections,
   teamMembers,
   services,
@@ -87,6 +88,19 @@ describe("Content data layer", () => {
       for (const image of section.images) {
         expect(imageIds).toContain(image.id);
       }
+    }
+  });
+
+  it("defines a curated home impact gallery with 5 to 7 approved images", () => {
+    const imageIds = new Set(approvedImageAssets.map((image) => image.id));
+
+    expect(homeImpactGallery.id).toBe("home-impact-gallery");
+    expect(homeImpactGallery.images.length).toBeGreaterThanOrEqual(5);
+    expect(homeImpactGallery.images.length).toBeLessThanOrEqual(7);
+
+    for (const image of homeImpactGallery.images) {
+      expect(imageIds).toContain(image.id);
+      expect(image.alt).toBeTruthy();
     }
   });
 

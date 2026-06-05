@@ -7,7 +7,8 @@ import FocusAreasGrid from "@/components/home/FocusAreasGrid";
 import TestimonialsCarousel from "@/components/home/TestimonialsCarousel";
 import CtaBanner from "@/components/home/CtaBanner";
 import SupportTrustBand from "@/components/home/SupportTrustBand";
-import { focusAreas, impactStats, testimonials } from "@/lib/content/data";
+import ImageGallery from "@/components/visual/ImageGallery";
+import { focusAreas, homeImpactGallery, impactStats, testimonials } from "@/lib/content/data";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -33,6 +34,7 @@ export default function HomePage() {
       <HeroSection />
       <MarqueeTicker phrases={tickerPhrases} />
       <ImpactStatsBar stats={impactStats} />
+      <ImageGallery title={homeImpactGallery.title} images={homeImpactGallery.images} />
       <MissionBlock />
       <FocusAreasGrid areas={focusAreas} />
       <SupportTrustBand />
