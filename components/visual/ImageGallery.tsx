@@ -82,7 +82,7 @@ export default function ImageGallery({ title, images }: ImageGalleryProps) {
               type="button"
               aria-label="Previous image"
               onClick={showPrevious}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-teal-dark text-2xl leading-none text-teal-dark transition-colors hover:bg-teal-dark hover:text-white"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-teal-dark text-2xl leading-none text-teal-dark transition-colors hover:bg-teal-dark hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-accent focus-visible:ring-offset-2"
             >
               &lsaquo;
             </button>
@@ -90,7 +90,7 @@ export default function ImageGallery({ title, images }: ImageGalleryProps) {
               type="button"
               aria-label="Next image"
               onClick={showNext}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-amber-accent text-2xl leading-none text-white transition-colors hover:bg-amber-light"
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-amber-accent text-2xl leading-none text-white transition-colors hover:bg-amber-light focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-accent focus-visible:ring-offset-2"
             >
               &rsaquo;
             </button>

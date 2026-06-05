@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 
 const assetMapPath = path.join(process.cwd(), "docs/plan/IMAGE_ASSET_MAP.md");
+const finalQaReportPath = path.join(process.cwd(), "docs/plan/IMAGE_QA_REPORT.md");
 const assetMap = fs.readFileSync(assetMapPath, "utf8");
 const redesignQuestions = fs.readFileSync(
   path.join(process.cwd(), "docs/plan/IMAGE_REDESIGN_GRILL_QUESTIONS.md"),
@@ -88,5 +89,28 @@ describe("image asset map", () => {
     for (const image of uniqueInventoryImages) {
       expect(assetMap).toContain(`\`${image}\``);
     }
+  });
+
+  it("documents the final image QA pass and remaining launch uncertainties", () => {
+    expect(fs.existsSync(finalQaReportPath)).toBe(true);
+
+    const report = fs.readFileSync(finalQaReportPath, "utf8");
+
+    for (const route of ["/", "/about", "/services", "/projects", "/skills", "/initiatives", "/enroll", "/volunteer", "/donate"]) {
+      expect(report).toContain(`\`${route}\``);
+    }
+
+    for (const requiredSection of [
+      "## Responsive Visual QA",
+      "## Accessibility QA",
+      "## Image Performance QA",
+      "## Remaining Launch Uncertainties",
+    ]) {
+      expect(report).toContain(requiredSection);
+    }
+
+    expect(report).toContain("Volunteer-specific field work hero");
+    expect(report).toContain("Named team portrait titles");
+    expect(report).toContain("rights-review");
   });
 });

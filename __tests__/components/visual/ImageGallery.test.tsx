@@ -78,6 +78,21 @@ describe("ImageGallery", () => {
     expect(slideForImage(images[0].alt)).toHaveAttribute("aria-hidden", "false");
   });
 
+  it("gives carousel controls visible keyboard focus states", () => {
+    render(<ImageGallery title="Impact gallery" images={images} />);
+
+    expect(screen.getByRole("button", { name: "Previous image" })).toHaveClass(
+      "focus-visible:ring-2",
+      "focus-visible:ring-amber-accent",
+      "focus-visible:ring-offset-2",
+    );
+    expect(screen.getByRole("button", { name: "Next image" })).toHaveClass(
+      "focus-visible:ring-2",
+      "focus-visible:ring-amber-accent",
+      "focus-visible:ring-offset-2",
+    );
+  });
+
   it("removes slide transition timing when reduced motion is preferred", () => {
     mockReducedMotion(true);
 
