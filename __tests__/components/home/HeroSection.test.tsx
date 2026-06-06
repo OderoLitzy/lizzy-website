@@ -1,29 +1,47 @@
 import { render, screen } from "@testing-library/react";
 import HeroSection from "@/components/home/HeroSection";
+import { homeHeroImage } from "@/lib/content/data";
 
 describe("HeroSection", () => {
-  it("renders the homepage editorial hero copy", () => {
+  it("renders the editorial Define Your Limits headline with an amber Limits treatment", () => {
     render(<HeroSection />);
     const heading = screen.getByRole("heading", { name: /define your limits/i });
+    const limits = screen.getByText("Limits");
 
     expect(heading).toBeInTheDocument();
-    expect(screen.getByText("CHAKE")).toHaveClass("uppercase", "text-amber-accent");
-    expect(
-      screen.getByText(
-        "Change Ambassadors Kenya walks with young people, women, and vulnerable families through mentorship, health education, leadership, and livelihood pathways rooted in local community life.",
-      ),
-    ).toBeInTheDocument();
+    expect(heading).toHaveClass("text-[clamp(4rem,10vw,6rem)]");
+    expect(limits).toHaveClass("text-amber-accent", "after:bg-amber-accent");
   });
 
-  it("uses the shared editorial header pattern instead of the split-image hero", () => {
+  it("renders the approved home hero image as the priority hero image", () => {
     render(<HeroSection />);
-    const hero = screen.getByRole("region", { name: /homepage hero/i });
+    const image = screen.getByRole("img", { name: homeHeroImage.alt });
+
+    expect(image).toHaveAttribute("src", expect.stringContaining(encodeURIComponent(homeHeroImage.src)));
+    expect(image).not.toHaveAttribute("loading", "lazy");
+  });
+
+  it("renders a desktop split hero with a deep teal left panel and diagonal separator", () => {
+    render(<HeroSection />);
+    const hero = screen.getByRole("region", { name: /hero/i });
+    const separator = screen.getByTestId("hero-diagonal-separator");
     const headline = screen.getByRole("heading", { name: /define your limits/i });
 
-    expect(hero).toHaveClass("bg-teal-dark", "py-16", "overflow-hidden");
-    expect(hero).not.toHaveClass("min-h-screen", "lg:grid-cols-[55%_45%]");
-    expect(headline).toHaveClass("font-serif", "font-black", "text-white", "leading-tight");
-    expect(hero.querySelector("img")).not.toBeInTheDocument();
+    expect(hero).toHaveClass("grid", "overflow-hidden", "bg-teal-dark", "lg:grid-cols-[55%_45%]");
+    expect(headline.parentElement?.parentElement).toHaveClass("bg-teal-dark");
+    expect(headline.nextElementSibling).toHaveClass("max-w-2xl", "text-white/80");
+    expect(separator).toHaveClass("bg-teal-dark", "lg:block");
+    expect(separator).toHaveStyle({ clipPath: "polygon(0 0, 100% 0, 0 100%)" });
+  });
+
+  it("stacks the teal message and 50vh image panel on mobile without horizontal overflow", () => {
+    render(<HeroSection />);
+    const hero = screen.getByRole("region", { name: /hero/i });
+    const image = screen.getByRole("img", { name: homeHeroImage.alt });
+    const imagePanel = image.parentElement;
+
+    expect(hero).toHaveClass("max-w-full", "overflow-hidden");
+    expect(imagePanel).toHaveClass("min-h-[50vh]", "lg:min-h-screen");
   });
 
   it("renders a Donate CTA link to /donate", () => {

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("homepage hero uses the editorial header pattern", async ({ page }) => {
+test("homepage hero uses the original split image landing pattern", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
 
@@ -16,9 +16,10 @@ test("homepage hero uses the editorial header pattern", async ({ page }) => {
   ).toBeVisible();
 
   await expect(hero).toHaveCSS("background-color", "rgb(13, 92, 87)");
-  await expect(hero.locator("img")).toHaveCount(0);
+  await expect(hero.locator("img")).toHaveCount(1);
+  await expect(hero.locator('[data-testid="hero-diagonal-separator"]')).toBeVisible();
 
   const box = await hero.boundingBox();
   expect(box, "homepage hero should have a browser layout box").not.toBeNull();
-  expect(box!.height).toBeLessThan(500);
+  expect(box!.height).toBeGreaterThanOrEqual(1000);
 });
