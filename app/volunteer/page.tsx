@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import EditorialHero from "@/components/editorial/EditorialHero";
 import VolunteerForm from "@/components/forms/VolunteerForm";
 import ImageCardGrid from "@/components/visual/ImageCardGrid";
 import { volunteerFieldWorkGallery } from "@/lib/content/data";
@@ -13,10 +14,9 @@ export const metadata: Metadata = pageMetadata({
 
 export default function VolunteerPage() {
   return (
-    <div className="bg-stone-bg pt-16">
-      <section className="mx-auto max-w-2xl px-4 pb-12 pt-10 sm:px-6">
-        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-amber-accent">Get Involved</p>
-        <h1 className="mb-4 font-serif text-4xl font-bold text-teal-dark">Be the Change</h1>
+    <div className="bg-stone-bg pt-24">
+      <EditorialHero eyebrow="Get involved" title="Be the Change" marker="VOL" />
+      <section className="mx-auto max-w-2xl px-4 pb-12 pt-10 text-center sm:px-6">
         <p className="text-stone-600 leading-relaxed">
           Volunteers are the backbone of CHAKE&apos;s work. Whether you are in Homa Bay or anywhere in the world, your skills and passion can transform lives. Fill in the form below and we will match you to an opportunity that fits.
         </p>

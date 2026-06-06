@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AnimatedSection from "@/components/animation/AnimatedSection";
+import EditorialHero from "@/components/editorial/EditorialHero";
 import { imageAsset } from "@/lib/content/data";
 import type { ImageMetadata } from "@/lib/content/types";
 import { pageMetadata } from "@/lib/seo";
@@ -48,13 +49,11 @@ const programs: SkillsProgram[] = [
 
 export default function SkillsPage() {
   return (
-    <div className="min-h-screen bg-stone-bg">
-      {/* Hero */}
-      <section className="bg-teal-primary py-16 px-4 text-white text-center">
-        <h1 className="font-serif text-4xl md:text-5xl font-bold mb-4">
-          Skills Development
-        </h1>
-        <p className="max-w-2xl mx-auto text-lg text-teal-light">
+    <div className="min-h-screen bg-stone-bg pt-24">
+      <EditorialHero eyebrow="Training pathways" title="Skills Development" marker="SKL" />
+
+      <section className="mx-auto max-w-2xl px-4 pt-10 text-center sm:px-6">
+        <p className="text-lg leading-8 text-stone-600">
           Practical training that turns potential into sustainable livelihoods
           for youth and women across Homa Bay County.
         </p>

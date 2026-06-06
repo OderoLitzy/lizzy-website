@@ -2,9 +2,6 @@ export default function OrgStory() {
   return (
     <section className="py-16 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="font-serif text-4xl font-bold text-teal-primary mb-4">
-          About Us
-        </h1>
         <p className="text-2xl font-semibold text-amber-accent mb-8 italic">
           &ldquo;Define Your Limits&rdquo;
         </p>
