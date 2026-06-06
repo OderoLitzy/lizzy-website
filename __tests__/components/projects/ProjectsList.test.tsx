@@ -16,4 +16,17 @@ describe("ProjectsList", () => {
       }
     });
   });
+
+  it("keeps upcoming project cards credible with imagery and no disabled styling", () => {
+    render(<ProjectsList projects={projects} />);
+
+    const upcomingProjects = projects.filter((project) => project.status === "upcoming");
+    for (const project of upcomingProjects) {
+      const card = screen.getByText(project.title).closest("article");
+      expect(screen.getByRole("img", { name: project.image?.alt })).toBeInTheDocument();
+      expect(card).toHaveTextContent("Coming Soon");
+      expect(card).not.toHaveClass("grayscale");
+      expect(card).not.toHaveClass("opacity-70");
+    }
+  });
 });

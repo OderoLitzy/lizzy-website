@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Testimonial } from "@/lib/content/types";
+import { carouselArrowControlClass } from "@/components/ui/carouselArrowControl";
 
 interface TestimonialsCarouselProps {
   testimonials: Testimonial[];
@@ -10,12 +11,19 @@ interface TestimonialsCarouselProps {
 export default function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
+    if (typeof window === "undefined" || !window.matchMedia) {
+      return false;
+    }
+
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
 
   const handlePrev = () => setActiveIndex((p) => (p - 1 + testimonials.length) % testimonials.length);
   const handleNext = () => setActiveIndex((p) => (p + 1) % testimonials.length);
 
   useEffect(() => {
-    if (isPaused || testimonials.length <= 1) {
+    if (isPaused || prefersReducedMotion || testimonials.length <= 1) {
       return;
     }
 
@@ -24,7 +32,22 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
     }, 6000);
 
     return () => window.clearInterval(interval);
-  }, [isPaused, testimonials.length]);
+  }, [isPaused, prefersReducedMotion, testimonials.length]);
+
+  useEffect(() => {
+    if (!window.matchMedia) {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const handleChange = (event: MediaQueryListEvent) => {
+      setPrefersReducedMotion(event.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
 
   return (
     <section
@@ -48,14 +71,17 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
             key={t.author}
             aria-hidden={i !== activeIndex}
             className={[
-              "w-full transition-all duration-700 ease-out",
+              "w-full",
+              prefersReducedMotion ? "" : "transition-all duration-700 ease-out",
               i % 2 === 0 ? "bg-teal-dark" : "bg-stone-bg",
               i === activeIndex
                 ? "relative translate-x-0 opacity-100"
-                : [
-                    "absolute inset-0 pointer-events-none opacity-0",
-                    i < activeIndex ? "-translate-x-8" : "translate-x-8",
-                  ].join(" "),
+                : prefersReducedMotion
+                  ? "absolute inset-0 pointer-events-none opacity-0"
+                  : [
+                      "absolute inset-0 pointer-events-none opacity-0",
+                      i < activeIndex ? "-translate-x-8" : "translate-x-8",
+                    ].join(" "),
             ].join(" ")}
           >
             <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:py-32">
@@ -119,14 +145,14 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
             <button
               onClick={handlePrev}
               aria-label="Previous testimonial"
-              className="w-10 h-10 flex items-center justify-center border border-white/30 text-white hover:bg-white/10 transition-colors"
+              className={carouselArrowControlClass}
             >
               &lsaquo;
             </button>
             <button
               onClick={handleNext}
               aria-label="Next testimonial"
-              className="w-10 h-10 flex items-center justify-center bg-amber-accent text-white hover:bg-amber-light transition-colors"
+              className={carouselArrowControlClass}
             >
               &rsaquo;
             </button>

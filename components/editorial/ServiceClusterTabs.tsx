@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import type { Service } from "@/lib/content/types";
 
@@ -16,6 +17,13 @@ const TABS: { cluster: Cluster; label: string }[] = [
   { cluster: "legal", label: "Legal & Rights" },
 ];
 
+const CLUSTER_IMAGE_SERVICE_TITLES: Record<Cluster, string> = {
+  health: "Life Skills & Sexual and Reproductive Health Education",
+  economic: "Economic Empowerment Support",
+  community: "Community Mobilization and Advocacy",
+  legal: "Legal Rights Education",
+};
+
 const servicePanelId = (service: Service) =>
   `service-${service.cluster}-${service.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 
@@ -24,6 +32,11 @@ export default function ServiceClusterTabs({ services }: ServiceClusterTabsProps
   const [expandedService, setExpandedService] = useState<string | null>(null);
 
   const activeServices = services.filter((s) => s.cluster === active);
+  const activeTab = TABS.find((tab) => tab.cluster === active)!;
+  const clusterImageService =
+    activeServices.find(
+      (service) => service.title === CLUSTER_IMAGE_SERVICE_TITLES[active],
+    ) ?? activeServices[0];
   const selectCluster = (cluster: Cluster) => {
     setActive(cluster);
     setExpandedService(null);
@@ -72,37 +85,62 @@ export default function ServiceClusterTabs({ services }: ServiceClusterTabsProps
         aria-labelledby={`tab-${active}`}
         className="py-8"
       >
-        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {activeServices.map((service) => (
-            <li key={service.title} className="border-b border-stone-200 pb-3">
-              <button
-                type="button"
-                aria-expanded={expandedService === service.title}
-                aria-controls={servicePanelId(service)}
-                onClick={() =>
-                  setExpandedService((current) =>
-                    current === service.title ? null : service.title,
-                  )
-                }
-                className="flex w-full items-start gap-3 text-left font-semibold text-stone-800 transition-colors hover:text-teal-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-accent focus-visible:ring-offset-2"
-              >
-                <span
-                  aria-hidden="true"
-                  className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-teal-primary"
-                />
-                <span className="text-sm leading-snug">{service.title}</span>
-              </button>
-              {expandedService === service.title && (
-                <p
-                  id={servicePanelId(service)}
-                  className="ml-5 mt-2 text-xs leading-relaxed text-stone-500"
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
+          <div className="overflow-hidden rounded-lg border border-stone-200 bg-white">
+            <div className="relative aspect-[4/3] bg-stone-100">
+              <Image
+                src={clusterImageService.image.src}
+                alt={clusterImageService.image.alt}
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="p-5">
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-amber-accent">
+                {activeTab.label}
+              </p>
+              <h2 className="mt-2 font-serif text-2xl font-black text-teal-dark">
+                {clusterImageService.title}
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-stone-600">
+                {clusterImageService.description}
+              </p>
+            </div>
+          </div>
+
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {activeServices.map((service) => (
+              <li key={service.title} className="border-b border-stone-200 pb-3">
+                <button
+                  type="button"
+                  aria-expanded={expandedService === service.title}
+                  aria-controls={servicePanelId(service)}
+                  onClick={() =>
+                    setExpandedService((current) =>
+                      current === service.title ? null : service.title,
+                    )
+                  }
+                  className="flex w-full items-start gap-3 text-left font-semibold text-stone-800 transition-colors hover:text-teal-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-accent focus-visible:ring-offset-2"
                 >
-                  {service.description}
-                </p>
-              )}
-            </li>
-          ))}
-        </ul>
+                  <span
+                    aria-hidden="true"
+                    className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-teal-primary"
+                  />
+                  <span className="text-sm leading-snug">{service.title}</span>
+                </button>
+                {expandedService === service.title && (
+                  <p
+                    id={servicePanelId(service)}
+                    className="ml-5 mt-2 text-xs leading-relaxed text-stone-500"
+                  >
+                    {service.description}
+                  </p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

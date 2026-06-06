@@ -1,7 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import { homeHeroImage } from "@/lib/content/data";
+import type { ImageMetadata } from "@/lib/content/types";
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  image?: ImageMetadata;
+}
+
+export default function HeroSection({ image = homeHeroImage }: HeroSectionProps) {
   return (
     <section className="grid min-h-screen max-w-full overflow-hidden bg-teal-dark lg:grid-cols-[55%_45%]" aria-label="Hero">
       <div className="relative z-10 flex min-h-screen items-center bg-teal-dark px-4 py-28 sm:px-6 lg:px-12 xl:px-20">
@@ -43,8 +49,8 @@ export default function HeroSection() {
           data-testid="hero-diagonal-separator"
         />
         <Image
-          src="/brand/staff.jpeg"
-          alt="Change Ambassadors Kenya staff working with community members"
+          src={image.src}
+          alt={image.alt}
           fill
           priority
           sizes="(min-width: 1024px) 45vw, 100vw"

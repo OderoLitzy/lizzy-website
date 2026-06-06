@@ -26,6 +26,22 @@ const testimonials: Testimonial[] = [
 
 const panelForQuote = (quote: RegExp) => screen.getByText(quote).closest("[aria-hidden]");
 
+function mockReducedMotion(matches: boolean) {
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: jest.fn().mockImplementation((query: string) => ({
+      matches: query === "(prefers-reduced-motion: reduce)" ? matches : false,
+      media: query,
+      onchange: null,
+      addEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+      dispatchEvent: jest.fn(),
+    })),
+  });
+}
+
 afterEach(() => {
   jest.useRealTimers();
 });
@@ -139,6 +155,23 @@ describe("TestimonialsCarousel", () => {
       jest.advanceTimersByTime(6000);
     });
     expect(panelForQuote(/Second quote text here/)).toHaveClass("opacity-100");
+  });
+
+  it("disables testimonial auto-rotation and slide transitions for reduced motion users", () => {
+    mockReducedMotion(true);
+    jest.useFakeTimers();
+
+    render(<TestimonialsCarousel testimonials={testimonials} />);
+
+    expect(panelForQuote(/First quote text here/)).not.toHaveClass("transition-all", "duration-700");
+    expect(panelForQuote(/Second quote text here/)).not.toHaveClass("translate-x-8");
+
+    act(() => {
+      jest.advanceTimersByTime(6000);
+    });
+
+    expect(panelForQuote(/First quote text here/)).toHaveClass("opacity-100");
+    expect(panelForQuote(/Second quote text here/)).toHaveClass("opacity-0");
   });
 
   it("wraps around from the last testimonial back to the first", async () => {
