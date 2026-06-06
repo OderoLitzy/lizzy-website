@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { TeamMember } from "@/lib/content/types";
 import AnimatedSection from "@/components/animation/AnimatedSection";
 
@@ -18,11 +19,23 @@ export default function TeamGrid({ members }: TeamGridProps) {
               <article
                 className="bg-white rounded-lg shadow p-6 flex flex-col items-center text-center"
               >
-                <div className="w-16 h-16 rounded-full bg-teal-primary/10 flex items-center justify-center mb-4">
-                  <span className="text-2xl text-teal-primary font-bold">
-                    {member.name.charAt(0)}
-                  </span>
-                </div>
+                {member.image || member.photoUrl ? (
+                  <div className="relative w-16 h-16 rounded-full overflow-hidden bg-teal-primary/10 mb-4 ring-2 ring-teal-primary/10">
+                    <Image
+                      src={member.image?.src ?? member.photoUrl ?? ""}
+                      alt={member.image?.alt ?? `Portrait of ${member.name}.`}
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-16 h-16 rounded-full bg-teal-primary/10 flex items-center justify-center mb-4">
+                    <span className="text-2xl text-teal-primary font-bold">
+                      {member.name.charAt(0)}
+                    </span>
+                  </div>
+                )}
                 <p className="font-semibold text-gray-900 text-sm">{member.name}</p>
                 <p className="text-teal-primary text-xs mt-1">{member.title}</p>
               </article>

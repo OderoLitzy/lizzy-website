@@ -43,14 +43,15 @@ describe("CtaBanner", () => {
     expect(donateLink).toHaveAttribute("href", "/donate");
   });
 
-  it("styles Donate Now as a white outline action centered at the split", () => {
+  it("keeps the action group in normal flow below the headline", () => {
     render(<CtaBanner />);
 
     expect(screen.getByTestId("cta-actions")).toHaveClass(
+      "flex",
       "items-center",
-      "justify-center",
-      "md:left-1/2"
+      "justify-center"
     );
+    expect(screen.getByTestId("cta-actions")).not.toHaveClass("md:absolute");
     expect(screen.getByRole("link", { name: /donate now/i })).toHaveClass(
       "border-2",
       "border-white",

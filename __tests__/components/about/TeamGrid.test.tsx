@@ -3,6 +3,15 @@ import TeamGrid from "@/components/about/TeamGrid";
 import { teamMembers } from "@/lib/content/data";
 
 describe("TeamGrid", () => {
+  it("renders approved portraits for team members", () => {
+    render(<TeamGrid members={teamMembers} />);
+
+    for (const member of teamMembers) {
+      expect(member.image).toBeDefined();
+      expect(screen.getByRole("img", { name: member.image?.alt ?? "" })).toBeInTheDocument();
+    }
+  });
+
   it("staggers each team member card by 80ms", () => {
     render(<TeamGrid members={teamMembers} />);
 
