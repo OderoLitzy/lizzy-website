@@ -36,7 +36,7 @@ export default function CtaBanner() {
 
         <div
           data-testid="cta-actions"
-          className="flex flex-col items-center justify-center gap-4 sm:flex-row md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:translate-y-16"
+          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <Link
             href="/donate"
