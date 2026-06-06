@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { ImageMetadata } from "@/lib/content/types";
+import { carouselArrowControlClass } from "@/components/ui/carouselArrowControl";
 
 interface ImageGalleryProps {
   title: string;
@@ -77,12 +78,12 @@ export default function ImageGallery({ title, images }: ImageGalleryProps) {
             ))}
           </div>
 
-          <div className="mt-4 flex items-center justify-end gap-3">
+          <div className="mt-4 flex items-center justify-end gap-3 bg-stone-950 px-4 py-4">
             <button
               type="button"
               aria-label="Previous image"
               onClick={showPrevious}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-teal-dark text-2xl leading-none text-teal-dark transition-colors hover:bg-teal-dark hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-accent focus-visible:ring-offset-2"
+              className={carouselArrowControlClass}
             >
               &lsaquo;
             </button>
@@ -90,7 +91,7 @@ export default function ImageGallery({ title, images }: ImageGalleryProps) {
               type="button"
               aria-label="Next image"
               onClick={showNext}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-amber-accent text-2xl leading-none text-white transition-colors hover:bg-amber-light focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-accent focus-visible:ring-offset-2"
+              className={carouselArrowControlClass}
             >
               &rsaquo;
             </button>

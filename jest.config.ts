@@ -21,6 +21,7 @@ const config: Config = {
   // Exclude editorial tests (they use jest.ui.config.ts without MSW)
   testPathIgnorePatterns: [
     "/node_modules/",
+    "/tests/e2e/",
     "/__tests__/components/editorial/",
   ],
   transformIgnorePatterns: [

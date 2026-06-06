@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Testimonial } from "@/lib/content/types";
+import { carouselArrowControlClass } from "@/components/ui/carouselArrowControl";
 
 interface TestimonialsCarouselProps {
   testimonials: Testimonial[];
@@ -144,14 +145,14 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
             <button
               onClick={handlePrev}
               aria-label="Previous testimonial"
-              className="w-10 h-10 flex items-center justify-center border border-white/30 text-white hover:bg-white/10 transition-colors"
+              className={carouselArrowControlClass}
             >
               &lsaquo;
             </button>
             <button
               onClick={handleNext}
               aria-label="Next testimonial"
-              className="w-10 h-10 flex items-center justify-center bg-amber-accent text-white hover:bg-amber-light transition-colors"
+              className={carouselArrowControlClass}
             >
               &rsaquo;
             </button>
