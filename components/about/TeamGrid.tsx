@@ -10,9 +10,15 @@ export default function TeamGrid({ members }: TeamGridProps) {
   return (
     <section className="py-16 bg-stone-bg">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="font-serif text-3xl font-bold text-teal-primary mb-10 text-center">
+        <h2 className="font-serif text-3xl font-bold text-teal-primary mb-4 text-center">
           Our Team
         </h2>
+        <p className="max-w-3xl mx-auto mb-10 text-center text-base leading-7 text-gray-700">
+          Our team advances CHAKE&apos;s mandate through community-based training for
+          youth and dignified support for elderly people, disabled people, households,
+          and vulnerable persons, working alongside families and local partners to
+          strengthen everyday care.
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {members.map((member, index) => (
             <AnimatedSection key={member.name} delay={index * 80}>
