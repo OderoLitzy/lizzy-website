@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import TeamGrid from "@/components/about/TeamGrid";
 import { teamMembers } from "@/lib/content/data";
 
@@ -9,6 +9,38 @@ describe("TeamGrid", () => {
     for (const member of teamMembers) {
       expect(member.image).toBeDefined();
       expect(screen.getByRole("img", { name: member.image?.alt ?? "" })).toBeInTheDocument();
+    }
+  });
+
+  it("renders expertise summaries on collapsed profile cards", () => {
+    render(<TeamGrid members={teamMembers} />);
+
+    for (const member of teamMembers) {
+      expect(member.expertise).toBeTruthy();
+      expect(screen.getByText(member.expertise ?? "")).toBeInTheDocument();
+    }
+  });
+
+  it("renders qualifications and background in native inline profile details", () => {
+    render(<TeamGrid members={teamMembers} />);
+
+    for (const member of teamMembers) {
+      const card = screen.getByText(member.name).closest("article");
+      expect(card).toBeInTheDocument();
+
+      const details = card?.querySelector("details");
+      expect(details).toBeInTheDocument();
+
+      const summary = within(details as HTMLElement).getByText("Qualifications and background");
+      expect(summary.tagName).toBe("SUMMARY");
+
+      for (const qualification of member.qualifications ?? []) {
+        expect(within(details as HTMLElement).getByText(qualification)).toBeInTheDocument();
+      }
+
+      for (const background of member.background ?? []) {
+        expect(within(details as HTMLElement).getByText(background)).toBeInTheDocument();
+      }
     }
   });
 
