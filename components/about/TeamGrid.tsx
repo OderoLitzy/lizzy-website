@@ -47,6 +47,35 @@ export default function TeamGrid({ members }: TeamGridProps) {
                 {member.expertise ? (
                   <p className="mt-3 text-xs leading-5 text-gray-600">{member.expertise}</p>
                 ) : null}
+                {member.qualifications?.length || member.background?.length ? (
+                  <details className="mt-5 w-full border-t border-gray-100 pt-4 text-left">
+                    <summary className="cursor-pointer list-inside text-xs font-semibold text-teal-primary marker:text-amber-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-primary">
+                      Qualifications and background
+                    </summary>
+                    <div className="mt-4 space-y-4 text-xs leading-5 text-gray-600">
+                      {member.qualifications?.length ? (
+                        <div>
+                          <h3 className="font-semibold text-gray-900">Qualifications</h3>
+                          <ul className="mt-2 list-disc space-y-1 pl-5">
+                            {member.qualifications.map((qualification) => (
+                              <li key={qualification}>{qualification}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : null}
+                      {member.background?.length ? (
+                        <div>
+                          <h3 className="font-semibold text-gray-900">Professional background</h3>
+                          <ul className="mt-2 list-disc space-y-1 pl-5">
+                            {member.background.map((background) => (
+                              <li key={background}>{background}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : null}
+                    </div>
+                  </details>
+                ) : null}
               </article>
             </AnimatedSection>
           ))}
