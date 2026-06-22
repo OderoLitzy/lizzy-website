@@ -23,7 +23,7 @@ export default function TeamGrid({ members }: TeamGridProps) {
           {members.map((member, index) => (
             <AnimatedSection key={member.name} delay={index * 80}>
               <article
-                className="bg-white rounded-lg shadow p-6 flex flex-col items-center text-center"
+                className="bg-white rounded-lg shadow p-6 h-full flex flex-col items-center text-center"
               >
                 {member.image || member.photoUrl ? (
                   <div className="relative w-16 h-16 rounded-full overflow-hidden bg-teal-primary/10 mb-4 ring-2 ring-teal-primary/10">
@@ -44,6 +44,9 @@ export default function TeamGrid({ members }: TeamGridProps) {
                 )}
                 <p className="font-semibold text-gray-900 text-sm">{member.name}</p>
                 <p className="text-teal-primary text-xs mt-1">{member.title}</p>
+                {member.expertise ? (
+                  <p className="mt-3 text-xs leading-5 text-gray-600">{member.expertise}</p>
+                ) : null}
               </article>
             </AnimatedSection>
           ))}

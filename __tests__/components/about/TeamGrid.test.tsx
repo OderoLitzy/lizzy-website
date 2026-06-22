@@ -12,6 +12,15 @@ describe("TeamGrid", () => {
     }
   });
 
+  it("renders expertise summaries on collapsed profile cards", () => {
+    render(<TeamGrid members={teamMembers} />);
+
+    for (const member of teamMembers) {
+      expect(member.expertise).toBeTruthy();
+      expect(screen.getByText(member.expertise ?? "")).toBeInTheDocument();
+    }
+  });
+
   it("staggers each team member card by 80ms", () => {
     render(<TeamGrid members={teamMembers} />);
 
