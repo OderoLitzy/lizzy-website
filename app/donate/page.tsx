@@ -32,7 +32,7 @@ export default function DonatePage() {
         <h2 className="font-serif text-2xl font-semibold text-teal-dark mb-8 text-center">
           Ways to Give
         </h2>
-        <div className="grid sm:grid-cols-3 gap-8">
+        <div className="grid items-start gap-8 sm:grid-cols-3">
           {/* M-Pesa */}
           <article className="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 text-center">
             <div className="text-4xl mb-4" aria-hidden="true">📱</div>
@@ -42,14 +42,17 @@ export default function DonatePage() {
             <p className="text-stone-600 leading-relaxed mb-4">
               Send your contribution directly via M-Pesa Paybill.
             </p>
-            <div className="bg-teal-50 rounded-lg p-3 text-sm text-teal-dark font-mono">
-              <p className="font-semibold">Paybill Number</p>
-              <p className="text-lg mt-1">
-                XXXXXX{" "}
-                <span className="text-xs text-stone-400 font-sans font-normal block mt-1">
-                  (confirm with CHAKE director)
-                </span>
-              </p>
+            <div className="bg-teal-50 rounded-lg p-4 text-left text-sm text-teal-dark">
+              <dl className="space-y-3">
+                <div>
+                  <dt className="font-semibold">Paybill Number</dt>
+                  <dd className="mt-1 font-mono text-lg">522533</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold">Account Number</dt>
+                  <dd className="mt-1 font-mono text-lg">8088329</dd>
+                </div>
+              </dl>
             </div>
           </article>
 
@@ -62,12 +65,44 @@ export default function DonatePage() {
             <p className="text-stone-600 leading-relaxed mb-4">
               Make a direct bank transfer to the CHAKE organisational account.
             </p>
-            <div className="bg-teal-50 rounded-lg p-3 text-sm text-teal-dark font-mono">
-              <p className="font-semibold">Account Details</p>
-              <p className="text-stone-400 text-xs font-sans font-normal mt-1">
-                Bank name, account number, and branch will be provided on
-                request — contact the director to confirm.
-              </p>
+            <div className="bg-teal-50 rounded-lg p-4 text-left text-sm text-teal-dark">
+              <dl className="space-y-3">
+                <div>
+                  <dt className="font-semibold">Bank Name</dt>
+                  <dd className="mt-1 font-mono">KCB BANK KENYA LIMITED</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold">Account Number</dt>
+                  <dd className="mt-1 font-mono">1351865978</dd>
+                </div>
+              </dl>
+              <details className="mt-4 border-t border-teal-primary/15 pt-3">
+                <summary className="cursor-pointer font-semibold text-teal-primary transition-colors hover:text-teal-dark">
+                  View full bank details
+                </summary>
+                <dl className="mt-3 space-y-3">
+                  <div>
+                    <dt className="font-semibold">Bank Code</dt>
+                    <dd className="mt-1 font-mono">01</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold">Bank Branch</dt>
+                    <dd className="mt-1 font-mono">Homa Bay</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold">Branch Code</dt>
+                    <dd className="mt-1 font-mono">230</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold">Account Name</dt>
+                    <dd className="mt-1 font-mono">Change Ambassadors Kenya</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold">SWIFT Code</dt>
+                    <dd className="mt-1 font-mono">KCBLKEN230</dd>
+                  </div>
+                </dl>
+              </details>
             </div>
           </article>
 
