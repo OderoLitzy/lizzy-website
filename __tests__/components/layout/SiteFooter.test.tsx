@@ -54,8 +54,18 @@ describe("SiteFooter", () => {
   it("renders social links as accessible icon-only links with amber hover", () => {
     render(<SiteFooter />);
 
-    for (const name of ["Instagram", "Facebook", "WhatsApp"]) {
+    const socialLinks = [
+      ["LinkedIn", "https://www.linkedin.com/public-profile/settings/"],
+      ["X", "https://x.com/CHAKE_Official"],
+      ["Instagram", "https://www.instagram.com/chake_kenya?igsh=b2x2cWFxbnZoZWd0"],
+      ["Facebook", "https://www.facebook.com/share/1DG8bnmg4H/"],
+      ["TikTok", "https://vm.tiktok.com/ZS9MG5sHpQNB-n1Zf5/"],
+      ["WhatsApp", "https://wa.me/254769629620"],
+    ] as const;
+
+    for (const [name, href] of socialLinks) {
       const link = screen.getByRole("link", { name });
+      expect(link).toHaveAttribute("href", href);
       expect(link).toHaveClass("hover:text-amber-accent");
       expect(link).toHaveTextContent("");
       expect(link.querySelector("svg")).toBeInTheDocument();
