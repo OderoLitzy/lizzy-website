@@ -365,7 +365,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     name: "Ms. Frida Adhiambo Okeyo",
-    title: "Community Health and Development",
+    title: "Treasurer",
     expertise: "Community health, development, monitoring and evaluation, IT, and public health epidemiology.",
     qualifications: ["Public health epidemiology", "Information technology", "Monitoring and evaluation"],
     background: ["Lecturer and researcher in community health and development."],

@@ -55,7 +55,7 @@ describe("SiteFooter", () => {
     render(<SiteFooter />);
 
     const socialLinks = [
-      ["LinkedIn", "https://www.linkedin.com/public-profile/settings/"],
+      ["LinkedIn", "https://www.linkedin.com/in/change-ambassadors-233b383b7/"],
       ["X", "https://x.com/CHAKE_Official"],
       ["Instagram", "https://www.instagram.com/chake_kenya?igsh=b2x2cWFxbnZoZWd0"],
       ["Facebook", "https://www.facebook.com/share/1DG8bnmg4H/"],

@@ -62,7 +62,7 @@ function IconWhatsApp() {
 const socialLinks = [
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/public-profile/settings/",
+    href: "https://www.linkedin.com/in/change-ambassadors-233b383b7/",
     Icon: IconLinkedIn,
   },
   { label: "X", href: "https://x.com/CHAKE_Official", Icon: IconX },
