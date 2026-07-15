@@ -18,6 +18,14 @@ describe("About Page", () => {
     }
   });
 
+  it("renders public-facing mandate copy in the Our Team section", () => {
+    expect(screen.getByRole("heading", { level: 2, name: "Our Team" })).toBeInTheDocument();
+    expect(screen.getByText(/community-based training for youth/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/dignified support for elderly people, disabled people, households, and vulnerable persons/i),
+    ).toBeInTheDocument();
+  });
+
   it("renders the Governance section", () => {
     expect(screen.getByRole("heading", { name: /governance/i })).toBeInTheDocument();
   });

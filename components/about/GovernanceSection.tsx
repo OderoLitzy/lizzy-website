@@ -7,7 +7,7 @@ export default function GovernanceSection() {
         </h2>
         <div className="prose prose-lg text-gray-700 space-y-4">
           <p>
-            CHAKE is governed by a Management Committee elected through a transparent
+            CHAKE is governed by a Lead Team of Board Members and then a Management Committee elected through a transparent
             and participatory process. Committee members are selected via{" "}
             <strong>secret ballot</strong> by the general membership, ensuring that
             leadership reflects the democratic will of the organization.

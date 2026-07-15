@@ -20,9 +20,14 @@ export interface PageImageSection {
   images: ImageMetadata[];
 }
 
+export type NonEmptyTextList = [string, ...string[]];
+
 export interface TeamMember {
   name: string;
   title: string;
+  expertise?: string;
+  qualifications?: NonEmptyTextList;
+  background?: NonEmptyTextList;
   bio?: string;
   photoUrl?: string;
   image?: ImageMetadata;
