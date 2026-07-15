@@ -18,6 +18,26 @@ describe("Donate Page", () => {
     expect(matches.length).toBeGreaterThan(0);
   });
 
+  it("renders actual public payment details without placeholder confirmation text", () => {
+    expect(screen.getByText("522533")).toBeInTheDocument();
+    expect(screen.getByText("8088329")).toBeInTheDocument();
+    expect(screen.getByText("KCB BANK KENYA LIMITED")).toBeInTheDocument();
+    expect(screen.getByText("1351865978")).toBeInTheDocument();
+    expect(screen.getAllByText("Change Ambassadors Kenya").length).toBeGreaterThan(0);
+    expect(screen.getByText("KCBLKEN230")).toBeInTheDocument();
+
+    expect(screen.queryByText(/XXXXXX/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/confirm with CHAKE director/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/provided on request/i)).not.toBeInTheDocument();
+  });
+
+  it("keeps secondary bank details collapsed behind an accessible disclosure by default", () => {
+    const disclosure = screen.getByText("View full bank details").closest("details");
+
+    expect(disclosure).not.toBeNull();
+    expect(disclosure).not.toHaveAttribute("open");
+  });
+
   it("renders the CHAKE email address", () => {
     expect(
       screen.getByText(/kechangeambassadors@gmail\.com/i)

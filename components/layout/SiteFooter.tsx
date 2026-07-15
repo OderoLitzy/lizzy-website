@@ -8,6 +8,22 @@ const quickLinks = [
   { label: "Donate", href: "/donate" },
 ];
 
+function IconLinkedIn() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true">
+      <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.4 8h4.2v14H.4V8zm7.6 0h4.02v1.9h.06c.56-1.06 1.94-2.18 3.99-2.18 4.27 0 5.06 2.81 5.06 6.47V22h-4.2v-6.91c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.8-2.65 3.65V22H8V8z" />
+    </svg>
+  );
+}
+
+function IconX() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true">
+      <path d="M18.9 2h3.68l-8.04 9.19L24 22h-7.41l-5.8-7.59L4.15 22H.47l8.6-9.83L0 2h7.59l5.24 6.93L18.9 2zm-1.29 18.1h2.04L6.48 3.8H4.29L17.6 20.1z" />
+    </svg>
+  );
+}
+
 function IconInstagram() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-5 h-5" aria-hidden="true">
@@ -26,6 +42,14 @@ function IconFacebook() {
   );
 }
 
+function IconTikTok() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true">
+      <path d="M16.6 2c.38 2.2 1.65 3.51 3.8 3.65v3.77a7.48 7.48 0 01-3.74-1.05v6.98c0 3.83-2.6 6.65-6.27 6.65-3.37 0-6.1-2.42-6.1-5.8 0-3.8 3.03-6.16 6.88-5.62v3.9c-1.65-.52-2.96.2-2.96 1.62 0 1.1.89 1.92 2.03 1.92 1.3 0 2.2-.78 2.2-2.5V2h4.16z" />
+    </svg>
+  );
+}
+
 function IconWhatsApp() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true">
@@ -34,6 +58,23 @@ function IconWhatsApp() {
     </svg>
   );
 }
+
+const socialLinks = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/change-ambassadors-233b383b7/",
+    Icon: IconLinkedIn,
+  },
+  { label: "X", href: "https://x.com/CHAKE_Official", Icon: IconX },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/chake_kenya?igsh=b2x2cWFxbnZoZWd0",
+    Icon: IconInstagram,
+  },
+  { label: "Facebook", href: "https://www.facebook.com/share/1DG8bnmg4H/", Icon: IconFacebook },
+  { label: "TikTok", href: "https://vm.tiktok.com/ZS9MG5sHpQNB-n1Zf5/", Icon: IconTikTok },
+  { label: "WhatsApp", href: "https://wa.me/254769629620", Icon: IconWhatsApp },
+];
 
 export default function SiteFooter() {
   return (
@@ -58,16 +99,12 @@ export default function SiteFooter() {
             <p className="text-sm text-teal-50 leading-relaxed max-w-xs">
               Empowering youth, women, and vulnerable groups in Homa Bay County through education, health, and economic opportunity.
             </p>
-            <div className="flex gap-4 mt-6">
-              <a href="https://instagram.com" aria-label="Instagram" className="text-teal-50 hover:text-amber-accent transition-colors">
-                <IconInstagram />
-              </a>
-              <a href="https://facebook.com" aria-label="Facebook" className="text-teal-50 hover:text-amber-accent transition-colors">
-                <IconFacebook />
-              </a>
-              <a href="https://wa.me/254769629620" aria-label="WhatsApp" className="text-teal-50 hover:text-amber-accent transition-colors">
-                <IconWhatsApp />
-              </a>
+            <div className="flex flex-wrap gap-4 mt-6">
+              {socialLinks.map(({ label, href, Icon }) => (
+                <a key={label} href={href} aria-label={label} className="text-teal-50 hover:text-amber-accent transition-colors">
+                  <Icon />
+                </a>
+              ))}
             </div>
           </div>
 
