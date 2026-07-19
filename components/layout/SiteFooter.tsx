@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import { brandAssets } from "@/lib/brand-assets";
 
 const quickLinks = [
   { label: "About Us", href: "/about" },
@@ -92,7 +94,13 @@ export default function SiteFooter() {
         <div data-testid="footer-columns" className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Brand */}
           <div>
-            <p className="font-serif text-2xl font-black mb-1 tracking-tight text-white">CHAKE</p>
+            <Image
+              src={brandAssets.logos.white}
+              alt="CHAKE logo"
+              width={1024}
+              height={1024}
+              className="h-20 w-20 object-contain mb-3"
+            />
             <p className="text-teal-50 text-xs font-bold tracking-widest uppercase mb-4">
               Change Ambassadors Kenya
             </p>
