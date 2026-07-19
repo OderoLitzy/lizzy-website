@@ -334,7 +334,7 @@ export const approvedImageAssets: ImageMetadata[] = [
   {
     id: "team-isaac-opiyo",
     src: "/images/about/team/isaac-opiyo.jpeg",
-    alt: "Portrait of Isaac Odiwuor of CHAKE.",
+    alt: "Portrait of Isaac Owuor of CHAKE.",
     status: "approved-named-team-portrait",
     sensitivity: "named-person",
     usage: ["about", "team"],
@@ -445,7 +445,7 @@ export const teamMembers: TeamMember[] = [
     image: imageAsset("team-maryanne-adhiambo"),
   },
   {
-    name: "Isaac Odiwuor",
+    name: "Isaac Owuor",
     title: "Youth Coordinator",
     expertise: "Land resource planning and management, rights advocacy, and vulnerable-group development.",
     qualifications: ["Land resource planning and management"],

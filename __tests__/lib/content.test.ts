@@ -141,7 +141,7 @@ describe("Content data layer", () => {
         background: ["Procurement and logistics support."],
       },
       {
-        name: "Isaac Odiwuor",
+        name: "Isaac Owuor",
         title: "Youth Coordinator",
         expertise: "Land resource planning and management, rights advocacy, and vulnerable-group development.",
         qualifications: ["Land resource planning and management"],
@@ -264,7 +264,7 @@ describe("Content data layer", () => {
         src: "/images/about/team/maryanne-adhiambo.jpeg",
       },
       {
-        name: "Isaac Odiwuor",
+        name: "Isaac Owuor",
         imageId: "team-isaac-opiyo",
         src: "/images/about/team/isaac-opiyo.jpeg",
       },
