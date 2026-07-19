@@ -1,6 +1,16 @@
 import type {
   TeamMember, Service, Project, FocusArea, CoreValue, Testimonial, ImpactStat, ImageMetadata, PageImageSection,
 } from "./types";
+import { brandAssets } from "@/lib/brand-assets";
+
+export const brandPlaceholderImage: ImageMetadata = {
+  id: "brand-placeholder-chake-logo",
+  src: brandAssets.logos.primary,
+  alt: "CHAKE logo.",
+  status: "brand-placeholder",
+  sensitivity: "standard",
+  usage: ["placeholder"],
+};
 
 export const approvedImageAssets: ImageMetadata[] = [
   {
