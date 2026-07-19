@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { brandAssets } from "@/lib/brand-assets";
 
 export const siteUrl = "https://lizzy-website.vercel.app";
 export const siteName = "CHAKE — Change Ambassadors Kenya";
 export const titleSuffix = ` | ${siteName}`;
-export const sharedOgImage = `${siteUrl}${brandAssets.social.openGraph}`;
-export const sharedTwitterImage = `${siteUrl}${brandAssets.social.twitter}`;
+export const sharedOgImage = `${siteUrl}/opengraph-image.png`;
+export const sharedTwitterImage = `${siteUrl}/twitter-image.png`;
 
 export const publicRoutes = [
   { path: "/", pageName: "Home", priority: 1 },
@@ -62,7 +61,14 @@ export function pageMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [sharedTwitterImage],
+      images: [
+        {
+          url: sharedTwitterImage,
+          width: 1200,
+          height: 600,
+          alt: siteName,
+        },
+      ],
     },
   };
 }

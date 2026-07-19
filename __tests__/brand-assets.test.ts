@@ -18,6 +18,27 @@ function readProjectFile(relativePath: string): Buffer {
   return fs.readFileSync(path.join(projectRoot, relativePath));
 }
 
+function readProjectText(relativePath: string): string {
+  return fs.readFileSync(path.join(projectRoot, relativePath), "utf8").trim();
+}
+
+function readIcoPngEntries(relativePath: string): Map<number, Buffer> {
+  const iconFile = readProjectFile(relativePath);
+  const imageCount = iconFile.readUInt16LE(4);
+  const images = new Map<number, Buffer>();
+
+  for (let index = 0; index < imageCount; index += 1) {
+    const entryOffset = 6 + index * 16;
+    const width = iconFile[entryOffset] || 256;
+    const imageSize = iconFile.readUInt32LE(entryOffset + 8);
+    const imageOffset = iconFile.readUInt32LE(entryOffset + 12);
+
+    images.set(width, iconFile.subarray(imageOffset, imageOffset + imageSize));
+  }
+
+  return images;
+}
+
 describe("CHAKE brand assets", () => {
   it("publishes kit logos and social previews at stable public paths", () => {
     const publicAssets = [
@@ -53,5 +74,22 @@ describe("CHAKE brand assets", () => {
     expect(readProjectFile("app/twitter-image.png")).toEqual(readZipEntry("social/twitter-card.png"));
     expect(readProjectFile("app/icon.png")).toEqual(readZipEntry("pwa/android-chrome-512x512.png"));
     expect(readProjectFile("app/apple-icon.png")).toEqual(readZipEntry("favicons/180.png"));
+  });
+
+  it("publishes brand alt text for Next metadata image files", () => {
+    expect(readProjectText("app/opengraph-image.alt.txt")).toBe(
+      "CHAKE — Change Ambassadors Kenya",
+    );
+    expect(readProjectText("app/twitter-image.alt.txt")).toBe(
+      "CHAKE — Change Ambassadors Kenya",
+    );
+  });
+
+  it("uses CHAKE favicon kit images in the browser favicon", () => {
+    const faviconImages = readIcoPngEntries("app/favicon.ico");
+
+    expect(faviconImages.get(16)).toEqual(readZipEntry("favicons/16.png"));
+    expect(faviconImages.get(32)).toEqual(readZipEntry("favicons/32.png"));
+    expect(faviconImages.get(48)).toEqual(readZipEntry("favicons/48.png"));
   });
 });

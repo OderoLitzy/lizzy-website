@@ -15,12 +15,12 @@ import VolunteerPage, {
 } from "@/app/volunteer/page";
 import robots from "@/app/robots";
 import sitemap from "@/app/sitemap";
-import { brandAssets } from "@/lib/brand-assets";
 
 const siteUrl = "https://lizzy-website.vercel.app";
 const titleSuffix = " | CHAKE — Change Ambassadors Kenya";
-const sharedOgImage = `${siteUrl}${brandAssets.social.openGraph}`;
-const sharedTwitterImage = `${siteUrl}${brandAssets.social.twitter}`;
+const socialImageAlt = "CHAKE — Change Ambassadors Kenya";
+const sharedOgImage = `${siteUrl}/opengraph-image.png`;
+const sharedTwitterImage = `${siteUrl}/twitter-image.png`;
 
 const routes = [
   { path: "/", pageName: "Home", Component: HomePage, metadata: homeMetadata },
@@ -95,14 +95,21 @@ describe("public route SEO and accessibility contract", () => {
           url: sharedOgImage,
           width: 1200,
           height: 630,
-          alt: "CHAKE — Change Ambassadors Kenya",
+          alt: socialImageAlt,
         },
       ]);
       expect(metadata.twitter).toEqual({
         card: "summary_large_image",
         title: `${pageName}${titleSuffix}`,
         description: metadata.description,
-        images: [sharedTwitterImage],
+        images: [
+          {
+            url: sharedTwitterImage,
+            width: 1200,
+            height: 600,
+            alt: socialImageAlt,
+          },
+        ],
       });
     }
   );
