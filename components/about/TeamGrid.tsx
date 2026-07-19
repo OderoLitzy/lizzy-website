@@ -12,7 +12,7 @@ export default function TeamGrid({ members }: TeamGridProps) {
     <section className="py-16 bg-stone-bg">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="font-serif text-3xl font-bold text-teal-primary mb-4 text-center">
-          Board Members
+          Our Team
         </h2>
         <p className="max-w-3xl mx-auto mb-10 text-center text-base leading-7 text-gray-700">
           Board Members advance CHAKE&apos;s mandate through community-based training for
