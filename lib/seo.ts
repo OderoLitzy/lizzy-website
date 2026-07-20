@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 export const siteUrl = "https://lizzy-website.vercel.app";
 export const siteName = "CHAKE — Change Ambassadors Kenya";
 export const titleSuffix = ` | ${siteName}`;
-export const sharedOgImage = `${siteUrl}/og-image.svg`;
+export const sharedOgImage = `${siteUrl}/opengraph-image.png`;
+export const sharedTwitterImage = `${siteUrl}/twitter-image.png`;
 
 export const publicRoutes = [
   { path: "/", pageName: "Home", priority: 1 },
@@ -36,6 +37,7 @@ export function pageMetadata({
   return {
     title,
     description,
+    metadataBase: new URL(siteUrl),
     alternates: {
       canonical: url,
     },
@@ -51,6 +53,19 @@ export function pageMetadata({
           url: sharedOgImage,
           width: 1200,
           height: 630,
+          alt: siteName,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [
+        {
+          url: sharedTwitterImage,
+          width: 1200,
+          height: 600,
           alt: siteName,
         },
       ],

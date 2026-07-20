@@ -24,6 +24,20 @@ describe("FullScreenNav", () => {
     expect(dialog).toHaveClass("fixed", "inset-0", "bg-teal-dark", "origin-top-right", "scale-100");
   });
 
+  it("renders the CHAKE logo image as an accessible home link", () => {
+    render(<FullScreenNav open={true} onClose={() => {}} links={links} />);
+
+    const homeLink = screen.getByRole("link", { name: /chake home/i });
+    expect(homeLink).toHaveAttribute("href", "/");
+
+    const logo = screen.getByRole("img", { name: /chake logo/i });
+    expect(homeLink).toContainElement(logo);
+    expect(logo).toHaveAttribute("src", expect.stringContaining("logo-white"));
+    expect(logo).toHaveAttribute("width", "1024");
+    expect(logo).toHaveAttribute("height", "1024");
+    expect(logo).toHaveClass("h-16", "w-16", "object-contain");
+  });
+
   it("renders all navigation links when open", () => {
     render(<FullScreenNav open={true} onClose={() => {}} links={links} />);
     links.forEach(({ label }, index) => {

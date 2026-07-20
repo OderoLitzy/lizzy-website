@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
+import ProjectCard from "@/components/projects/ProjectCard";
 import ProjectsList from "@/components/projects/ProjectsList";
 import { projects } from "@/lib/content/data";
+import type { Project } from "@/lib/content/types";
 
 describe("ProjectsList", () => {
   it("staggers project cards within each project section by 80ms", () => {
@@ -28,5 +30,35 @@ describe("ProjectsList", () => {
       expect(card).not.toHaveClass("grayscale");
       expect(card).not.toHaveClass("opacity-70");
     }
+  });
+
+  it("keeps approved project photos cropped with object-cover", () => {
+    const projectWithApprovedPhoto = projects.find((project) => project.image);
+
+    expect(projectWithApprovedPhoto).toBeDefined();
+    render(<ProjectCard project={projectWithApprovedPhoto as Project} />);
+
+    expect(screen.getByRole("img", { name: projectWithApprovedPhoto?.image?.alt })).toHaveClass("object-cover");
+  });
+
+  it("renders the CHAKE logo in a stable image area when a project image is missing", () => {
+    const projectWithoutImage: Project = {
+      title: "Sponsor a Bag",
+      description: "Provide school materials for a learner.",
+      status: "active",
+    };
+
+    render(<ProjectCard project={projectWithoutImage} />);
+
+    const image = screen.getByRole("img", {
+      name: "CHAKE logo placeholder for Project image for Sponsor a Bag.",
+    });
+    expect(image).toHaveAttribute("src", expect.stringContaining("logo-primary.png"));
+    expect(image).toHaveClass("object-contain");
+    expect(image).not.toHaveClass("object-cover");
+
+    const imageArea = image.parentElement;
+    expect(imageArea).toHaveClass("relative");
+    expect(imageArea).toHaveClass("aspect-[4/3]");
   });
 });

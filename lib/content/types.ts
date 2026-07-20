@@ -9,7 +9,7 @@ export interface ImageMetadata {
   id: string;
   src: string;
   alt: string;
-  status: "approved" | "approved-named-team-portrait";
+  status: "approved" | "approved-named-team-portrait" | "brand-placeholder";
   sensitivity: ImageSensitivity;
   usage: string[];
 }

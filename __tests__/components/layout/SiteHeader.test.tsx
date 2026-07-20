@@ -11,9 +11,18 @@ const NAV_LINKS = [
 ];
 
 describe("SiteHeader", () => {
-  it("renders the CHAKE logo text", () => {
+  it("renders the CHAKE logo image as the home link", () => {
     render(<SiteHeader />);
-    expect(screen.getAllByText(/CHAKE/i).length).toBeGreaterThan(0);
+
+    const homeLink = screen.getByRole("link", { name: /chake home/i });
+    expect(homeLink).toHaveAttribute("href", "/");
+
+    const logo = screen.getByRole("img", { name: /chake logo/i });
+    expect(homeLink).toContainElement(logo);
+    expect(logo).toHaveAttribute("src", expect.stringContaining("logo-white"));
+    expect(logo).toHaveAttribute("width", "1024");
+    expect(logo).toHaveAttribute("height", "1024");
+    expect(logo).toHaveClass("h-12", "w-12", "object-contain");
   });
 
   it("renders a Donate link as the primary CTA", () => {
@@ -67,7 +76,10 @@ describe("SiteHeader", () => {
     expect(header).toHaveClass("bg-transparent");
     expect(header).not.toHaveClass("border-b");
 
-    expect(screen.getByRole("link", { name: "CHAKE" })).toHaveClass("text-white");
+    expect(screen.getByRole("img", { name: /chake logo/i })).toHaveAttribute(
+      "src",
+      expect.stringContaining("logo-white"),
+    );
     expect(screen.getByRole("link", { name: "About Us" })).toHaveClass("text-white");
     expect(screen.getByRole("button", { name: /open menu/i })).toHaveClass("text-white");
     expect(screen.getByRole("link", { name: /donate/i })).toHaveClass("bg-amber-accent");
@@ -93,7 +105,10 @@ describe("SiteHeader", () => {
 
     expect(header).toHaveClass("bg-white/95");
     expect(header).toHaveClass("border-b");
-    expect(screen.getByRole("link", { name: "CHAKE" })).toHaveClass("text-teal-primary");
+    expect(screen.getByRole("img", { name: /chake logo/i })).toHaveAttribute(
+      "src",
+      expect.stringContaining("logo-primary"),
+    );
     expect(screen.getByRole("button", { name: /open menu/i })).toHaveClass("text-stone-700");
     expect(header).toHaveClass("shadow-md");
     expect(header).not.toHaveClass("shadow-sm");

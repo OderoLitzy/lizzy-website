@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import FullScreenNav from "@/components/editorial/FullScreenNav";
+import { brandAssets } from "@/lib/brand-assets";
 
 const navLinks = [
   { label: "About Us", href: "/about" },
@@ -48,12 +50,19 @@ export default function SiteHeader() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link
             href="/"
+            aria-label="CHAKE home"
             className={[
-              "font-serif font-bold text-xl tracking-tight transition-colors duration-300",
-              onHero ? "text-white" : "text-teal-primary",
+              "block transition-opacity duration-300 hover:opacity-85",
             ].join(" ")}
           >
-            CHAKE
+            <Image
+              src={onHero ? brandAssets.logos.white : brandAssets.logos.primary}
+              alt="CHAKE logo"
+              width={1024}
+              height={1024}
+              priority
+              className="h-12 w-12 object-contain"
+            />
           </Link>
 
           <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
