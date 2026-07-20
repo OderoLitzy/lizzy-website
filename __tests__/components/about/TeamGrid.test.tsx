@@ -8,8 +8,34 @@ describe("TeamGrid", () => {
 
     for (const member of teamMembers) {
       expect(member.image).toBeDefined();
-      expect(screen.getByRole("img", { name: member.image?.alt ?? "" })).toBeInTheDocument();
+      expect(screen.getByRole("img", { name: member.image?.alt ?? "" })).toHaveClass("object-cover");
     }
+  });
+
+  it("renders the CHAKE logo instead of initials when a team member portrait is missing", () => {
+    render(
+      <TeamGrid
+        members={[
+          {
+            name: "Grace Achieng",
+            title: "Community Liaison",
+          },
+        ]}
+      />,
+    );
+
+    const image = screen.getByRole("img", {
+      name: "CHAKE logo placeholder for Team portrait for Grace Achieng.",
+    });
+    expect(image).toHaveAttribute("src", expect.stringContaining("logo-primary.png"));
+    expect(image).toHaveClass("object-contain");
+    expect(image).not.toHaveClass("object-cover");
+    expect(screen.queryByText("G")).not.toBeInTheDocument();
+
+    const imageArea = image.parentElement;
+    expect(imageArea).toHaveClass("relative");
+    expect(imageArea).toHaveClass("w-16");
+    expect(imageArea).toHaveClass("h-16");
   });
 
   it("renders expertise summaries on collapsed profile cards", () => {

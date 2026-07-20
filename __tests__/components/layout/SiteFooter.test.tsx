@@ -7,6 +7,17 @@ describe("SiteFooter", () => {
     expect(screen.getByText(/Change Ambassadors Kenya/i)).toBeInTheDocument();
   });
 
+  it("renders the CHAKE logo image in the brand block", () => {
+    render(<SiteFooter />);
+
+    const logo = screen.getByRole("img", { name: /chake logo/i });
+    expect(logo).toHaveAttribute("src", expect.stringContaining("logo-white"));
+    expect(logo).toHaveAttribute("width", "1024");
+    expect(logo).toHaveAttribute("height", "1024");
+    expect(logo).toHaveClass("h-20", "w-20", "object-contain");
+    expect(screen.queryByText("CHAKE", { selector: "p.text-white" })).not.toBeInTheDocument();
+  });
+
   it("renders contact email", () => {
     render(<SiteFooter />);
     expect(screen.getByText(/kechangeambassadors@gmail\.com/i)).toBeInTheDocument();
@@ -34,7 +45,7 @@ describe("SiteFooter", () => {
     expect(screen.getByRole("contentinfo")).toHaveClass("bg-teal-dark");
     expect(screen.getByTestId("footer-columns")).toHaveClass("grid-cols-1", "md:grid-cols-3");
     expect(screen.getByText("CHAKE", { selector: "[aria-hidden='true']" })).toHaveClass("text-teal-primary/20");
-    expect(screen.getAllByText("CHAKE").some((element) => element.classList.contains("text-white"))).toBe(true);
+    expect(screen.getByRole("img", { name: /chake logo/i })).toHaveClass("object-contain");
     expect(screen.getByText("Navigation")).toHaveClass("text-white");
     expect(screen.getByText("Contact")).toHaveClass("text-white");
     expect(screen.getByText(/Empowering youth/i)).toHaveClass("text-teal-50");

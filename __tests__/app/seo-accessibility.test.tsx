@@ -18,7 +18,9 @@ import sitemap from "@/app/sitemap";
 
 const siteUrl = "https://lizzy-website.vercel.app";
 const titleSuffix = " | CHAKE — Change Ambassadors Kenya";
-const sharedOgImage = `${siteUrl}/og-image.svg`;
+const socialImageAlt = "CHAKE — Change Ambassadors Kenya";
+const sharedOgImage = `${siteUrl}/opengraph-image.png`;
+const sharedTwitterImage = `${siteUrl}/twitter-image.png`;
 
 const routes = [
   { path: "/", pageName: "Home", Component: HomePage, metadata: homeMetadata },
@@ -83,6 +85,7 @@ describe("public route SEO and accessibility contract", () => {
       expect(title(metadata)).toBe(`${pageName}${titleSuffix}`);
       expect(metadata.description).toEqual(expect.any(String));
       expect(metadata.description).not.toHaveLength(0);
+      expect(metadata.metadataBase).toEqual(new URL(siteUrl));
       expect(metadata.alternates?.canonical).toBe(`${siteUrl}${path === "/" ? "" : path}`);
       expect(metadata.openGraph?.url).toBe(`${siteUrl}${path === "/" ? "" : path}`);
       expect(metadata.openGraph?.title).toBe(`${pageName}${titleSuffix}`);
@@ -92,9 +95,22 @@ describe("public route SEO and accessibility contract", () => {
           url: sharedOgImage,
           width: 1200,
           height: 630,
-          alt: "CHAKE — Change Ambassadors Kenya",
+          alt: socialImageAlt,
         },
       ]);
+      expect(metadata.twitter).toEqual({
+        card: "summary_large_image",
+        title: `${pageName}${titleSuffix}`,
+        description: metadata.description,
+        images: [
+          {
+            url: sharedTwitterImage,
+            width: 1200,
+            height: 600,
+            alt: socialImageAlt,
+          },
+        ],
+      });
     }
   );
 

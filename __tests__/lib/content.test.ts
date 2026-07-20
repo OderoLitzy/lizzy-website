@@ -1,5 +1,6 @@
 import {
   approvedImageAssets,
+  brandPlaceholderImage,
   homeImpactGallery,
   pageImageSections,
   teamMembers,
@@ -9,6 +10,7 @@ import {
   testimonials,
   impactStats,
 } from "@/lib/content/data";
+import { getOptionalContentImage } from "@/lib/content/images";
 import type { TeamMember } from "@/lib/content/types";
 
 const structuredTeamProfile: TeamMember = {
@@ -46,7 +48,18 @@ describe("Content data layer", () => {
       expect(image.src).toMatch(/^\/images\//);
       expect(image.alt).toBeTruthy();
       expect(["approved", "approved-named-team-portrait"]).toContain(image.status);
+      expect(image.status).not.toBe("brand-placeholder");
     }
+  });
+
+  it("uses the CHAKE logo as the shared placeholder when optional content images are missing", () => {
+    const resolved = getOptionalContentImage(undefined, "Project image for Sponsor a Bag");
+
+    expect(resolved.image).toEqual(brandPlaceholderImage);
+    expect(resolved.image.src).toBe("/brand/logo-primary.png");
+    expect(resolved.image.status).toBe("brand-placeholder");
+    expect(resolved.alt).toBe("CHAKE logo placeholder for Project image for Sponsor a Bag.");
+    expect(resolved.objectFitClassName).toBe("object-contain");
   });
 
   it("has 11 team members", () => {
@@ -141,7 +154,7 @@ describe("Content data layer", () => {
         background: ["Procurement and logistics support."],
       },
       {
-        name: "Isaac Odiwuor",
+        name: "Isaac Owuor",
         title: "Youth Coordinator",
         expertise: "Land resource planning and management, rights advocacy, and vulnerable-group development.",
         qualifications: ["Land resource planning and management"],
@@ -264,7 +277,7 @@ describe("Content data layer", () => {
         src: "/images/about/team/maryanne-adhiambo.jpeg",
       },
       {
-        name: "Isaac Odiwuor",
+        name: "Isaac Owuor",
         imageId: "team-isaac-opiyo",
         src: "/images/about/team/isaac-opiyo.jpeg",
       },

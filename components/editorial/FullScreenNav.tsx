@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect } from "react";
+import { brandAssets } from "@/lib/brand-assets";
 
 interface Props {
   open: boolean;
@@ -39,7 +41,15 @@ export default function FullScreenNav({ open, onClose, links }: Props) {
     >
       {/* Header row */}
       <div className="flex items-center justify-between mb-12">
-        <span className="font-serif font-bold text-2xl text-white tracking-tight">CHAKE</span>
+        <Link href="/" aria-label="CHAKE home" onClick={onClose} className="block transition-opacity hover:opacity-85">
+          <Image
+            src={brandAssets.logos.white}
+            alt="CHAKE logo"
+            width={1024}
+            height={1024}
+            className="h-16 w-16 object-contain"
+          />
+        </Link>
         <button
           aria-label="Close menu"
           onClick={onClose}
