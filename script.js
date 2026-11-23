@@ -7,7 +7,7 @@ const U=(src,w=800)=>{
   return `https://images.unsplash.com/photo-${src}?w=${w}&q=80&auto=format&fit=crop`;
 };
 const gallery=[
- ['https://photos.google.com/share/AF1QipMgNvZDB40FCvJhoF0s5X_yf1jl0LAdEfVSlMcSYljywVTl7DC9Hx-tuewxtu5GjA/photo/AF1QipNLJZ_wIZphgLpXlBSVMCU3mCnPUjPlJn_Ln6oo?key=UEhqM2pLVXhRUDIxc1YzTXUtUksyMnp6MVlxWVZB','Creating Awareness Amongst Students','rl'],
+ ['https://trial-phase.vercel.app/_next/image?url=%2Fimages%2Fhome%2Fgirls-school-outreach.jpeg&w=640&q=75','Distributing Sanitary Towels To Female Students','rl'],
  ['https://trial-phase.vercel.app/_next/image?url=%2Fimages%2Fhome%2Fyouth-mentorship-session.jpeg&w=1200&q=75','Sharing Moments with students','ru'],
   ['https://photos.google.com/share/AF1QipMgNvZDB40FCvJhoF0s5X_yf1jl0LAdEfVSlMcSYljywVTl7DC9Hx-tuewxtu5GjA/photo/AF1QipM5RSZphRV7aIUqlbpVIwvDllaYwixFVCANTw2U?key=UEhqM2pLVXhRUDIxc1YzTXUtUksyMnp6MVlxWVZB','Tree Planting Sessions','ru'],
   ['https://photos.google.com/share/AF1QipMgNvZDB40FCvJhoF0s5X_yf1jl0LAdEfVSlMcSYljywVTl7DC9Hx-tuewxtu5GjA/photo/AF1QipM07tMr-JSdIkOBlxBt1FlxlqydVRt-t1Urgj7q?key=UEhqM2pLVXhRUDIxc1YzTXUtUksyMnp6MVlxWVZB','Engaging students in tree planting activities','ru'],
