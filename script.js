@@ -8,13 +8,13 @@ const U=(src,w=800)=>{
 };
 const gallery=[
  ['https://photos.google.com/share/AF1QipMgNvZDB40FCvJhoF0s5X_yf1jl0LAdEfVSlMcSYljywVTl7DC9Hx-tuewxtu5GjA/photo/AF1QipNLJZ_wIZphgLpXlBSVMCU3mCnPUjPlJn_Ln6oo?key=UEhqM2pLVXhRUDIxc1YzTXUtUksyMnp6MVlxWVZB','Creating Awareness Amongst Students','rl'],
- ['https://photos.google.com/share/AF1QipMgNvZDB40FCvJhoF0s5X_yf1jl0LAdEfVSlMcSYljywVTl7DC9Hx-tuewxtu5GjA/photo/AF1QipMUqPtVECbvs17EH075LCVBsbvU-0dhQy_BAnKV?key=UEhqM2pLVXhRUDIxc1YzTXUtUksyMnp6MVlxWVZB','Sharing Moments','ru'],
+ ['https://trial-phase.vercel.app/_next/image?url=%2Fimages%2Fhome%2Fyouth-mentorship-session.jpeg&w=1200&q=75','Sharing Moments with students','ru'],
   ['https://photos.google.com/share/AF1QipMgNvZDB40FCvJhoF0s5X_yf1jl0LAdEfVSlMcSYljywVTl7DC9Hx-tuewxtu5GjA/photo/AF1QipM5RSZphRV7aIUqlbpVIwvDllaYwixFVCANTw2U?key=UEhqM2pLVXhRUDIxc1YzTXUtUksyMnp6MVlxWVZB','Tree Planting Sessions','ru'],
   ['https://photos.google.com/share/AF1QipMgNvZDB40FCvJhoF0s5X_yf1jl0LAdEfVSlMcSYljywVTl7DC9Hx-tuewxtu5GjA/photo/AF1QipM07tMr-JSdIkOBlxBt1FlxlqydVRt-t1Urgj7q?key=UEhqM2pLVXhRUDIxc1YzTXUtUksyMnp6MVlxWVZB','Engaging students in tree planting activities','ru'],
   ['https://photos.google.com/share/AF1QipMgNvZDB40FCvJhoF0s5X_yf1jl0LAdEfVSlMcSYljywVTl7DC9Hx-tuewxtu5GjA/photo/AF1QipPd6pHwJgTHGKFyd8ZuZKDJ8TTqe3RG6b8GsPdc?key=UEhqM2pLVXhRUDIxc1YzTXUtUksyMnp6MVlxWVZB','','ru'],
   ['https://photos.google.com/share/AF1QipMgNvZDB40FCvJhoF0s5X_yf1jl0LAdEfVSlMcSYljywVTl7DC9Hx-tuewxtu5GjA/photo/AF1QipNTORtT1e62amRr2GgSpI5dyeqkwndn337wjDee?key=UEhqM2pLVXhRUDIxc1YzTXUtUksyMnp6MVlxWVZB','','ru'],
   ['https://photos.google.com/share/AF1QipMgNvZDB40FCvJhoF0s5X_yf1jl0LAdEfVSlMcSYljywVTl7DC9Hx-tuewxtu5GjA/photo/AF1QipPkFG7O08iwwgmAJgjpyElO0r7GNmfcXZoYFXTG?key=UEhqM2pLVXhRUDIxc1YzTXUtUksyMnp6MVlxWVZB','','ru'],
- ['https://www.kechangeambassadors.org/_next/image?url=%2Fimages%2Ftraining%2Fcommunity-work-training.jpeg&w=640&q=75','Tree Planting Sessions','rr']];
+ ['https://trial-phase.vercel.app/_next/image?url=%2Fimages%2Fhome%2Fskills-development-overview.jpeg&w=1200&q=75','','rr']];
 
 
 const projects=[
