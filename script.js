@@ -29,9 +29,9 @@ const tests=[
  
 const team=[
  ['Founding Director','Elizabeth Achieng Odero','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516579/WhatsApp_Image_2026-11-24_at_00.56.00_2_puhttx.jpg'],
- ['Treasure','Ms. Frida Adhiambo Okeyo','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516548/WhatsApp_Image_2026-11-24_at_02.23.02_2_f9abk0.jpg'],
- ['Organizing Secretary','Dr. Caren Adhiambo Otieno','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516621/WhatsApp_Image_2026-11-24_at_00.55.59_2_tdykhq.jpg'],
- ['Education','Dr. Karen Otieno','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516594/WhatsApp_Image_2026-11-24_at_00.56.00_1_jaqfqf.jpg'],
+ ['Treasure','Dr. Frida Adhiambo Okeyo Phd','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516548/WhatsApp_Image_2026-11-24_at_02.23.02_2_f9abk0.jpg'],
+ ['Organizing Secretary','Dr. Caren Adhiambo Otieno Phd','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516621/WhatsApp_Image_2026-11-24_at_00.55.59_2_tdykhq.jpg'],
+ ['Education','Dr. Karen Otieno Phd','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516594/WhatsApp_Image_2026-11-24_at_00.56.00_1_jaqfqf.jpg'],
  ['Project Manager','Dr. Henric Ibsen','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516607/WhatsApp_Image_2026-11-24_at_00.56.00_znh2pi.jpg'],
  ['Secretary','Paskalia Akinyi','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516648/WhatsApp_Image_2026-11-24_at_00.55.59_isvvwr.jpg'],
  ['Medical Doctor','Dr. Noel Curt Odero','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516663/WhatsApp_Image_2026-11-24_at_00.55.58_2_hcmxf3.jpg'],
