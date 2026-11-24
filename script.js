@@ -24,8 +24,8 @@ const projects=[
  ['https://th.bing.com/th/id/OIP.xFxhs1dRlIizbM__rWBCxwHaEK?w=300&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3','Teenage Pregnancy Awareness','Health','Community campaigns and safe spaces to prevent teenage pregnancy and early marriage.'],
  ['https://th.bing.com/th/id/OIP.zpD3oM6WKHDWKC_htjGWWgHaGS?w=193&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3','Waste to Wealth Project','Enterprise','Turning waste into products and income for young people and women.']];
 const tests=[
- ['"CHAKE gave me the confidence to speak up and start my own mushroom product Innovation."','Dr. Caren Adhiambo Otieno.','Organizing Secretary, Homabay','https://www.kechangeambassadors.org/_next/image?url=%2Fimages%2Fabout%2Fteam%2Fcaren-adhiambo-otieno.jpeg&w=96&q=75'],
- ['"The CHAKE sessions opened conversations in our school that nobody dared to start."','Dr. Karen Otieno','Education','https://www.kechangeambassadors.org/_next/image?url=%2Fimages%2Fabout%2Fteam%2Fkaren-atieno.jpeg&w=96&q=75']];
+ ['"Am a climate action advocate,Botanist and IP and Technology transfer officer at Rongo University.Chake helps me champion climate-smart agriculture,gender equality,STEM,Innovation ant technology transfer with a strong commitment to empowering women and youths and driving sustainable community development"','Dr. Caren Adhiambo Otieno.','Organizing Secretary, Homabay','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516621/WhatsApp_Image_2026-11-24_at_00.55.59_2_tdykhq.jpg'],
+ ['"The CHAKE sessions opened conversations in our school that nobody dared to start."','Dr. Karen Otieno','Education','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516594/WhatsApp_Image_2026-11-24_at_00.56.00_1_jaqfqf.jpg']];
  
 const team=[
  ['Founding Director','Elizabeth Achieng Odero','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516579/WhatsApp_Image_2026-11-24_at_00.56.00_2_puhttx.jpg'],
