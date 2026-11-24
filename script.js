@@ -9,11 +9,11 @@ const U=(src,w=800)=>{
 const gallery=[
  ['https://trial-phase.vercel.app/_next/image?url=%2Fimages%2Fhome%2Fgirls-school-outreach.jpeg&w=640&q=75','Distributing Sanitary Towels To Female Students','rl'],
  ['https://trial-phase.vercel.app/_next/image?url=%2Fimages%2Fhome%2Fyouth-mentorship-session.jpeg&w=1200&q=75','Sharing Moments with students','ru'],
-  ['https://photos.google.com/share/AF1QipMgNvZDB40FCvJhoF0s5X_yf1jl0LAdEfVSlMcSYljywVTl7DC9Hx-tuewxtu5GjA/photo/AF1QipM5RSZphRV7aIUqlbpVIwvDllaYwixFVCANTw2U?key=UEhqM2pLVXhRUDIxc1YzTXUtUksyMnp6MVlxWVZB','Tree Planting Sessions','ru'],
-  ['https://photos.google.com/share/AF1QipMgNvZDB40FCvJhoF0s5X_yf1jl0LAdEfVSlMcSYljywVTl7DC9Hx-tuewxtu5GjA/photo/AF1QipM07tMr-JSdIkOBlxBt1FlxlqydVRt-t1Urgj7q?key=UEhqM2pLVXhRUDIxc1YzTXUtUksyMnp6MVlxWVZB','Engaging students in tree planting activities','ru'],
-  ['https://photos.google.com/share/AF1QipMgNvZDB40FCvJhoF0s5X_yf1jl0LAdEfVSlMcSYljywVTl7DC9Hx-tuewxtu5GjA/photo/AF1QipPd6pHwJgTHGKFyd8ZuZKDJ8TTqe3RG6b8GsPdc?key=UEhqM2pLVXhRUDIxc1YzTXUtUksyMnp6MVlxWVZB','','ru'],
-  ['https://photos.google.com/share/AF1QipMgNvZDB40FCvJhoF0s5X_yf1jl0LAdEfVSlMcSYljywVTl7DC9Hx-tuewxtu5GjA/photo/AF1QipNTORtT1e62amRr2GgSpI5dyeqkwndn337wjDee?key=UEhqM2pLVXhRUDIxc1YzTXUtUksyMnp6MVlxWVZB','','ru'],
-  ['https://photos.google.com/share/AF1QipMgNvZDB40FCvJhoF0s5X_yf1jl0LAdEfVSlMcSYljywVTl7DC9Hx-tuewxtu5GjA/photo/AF1QipPkFG7O08iwwgmAJgjpyElO0r7GNmfcXZoYFXTG?key=UEhqM2pLVXhRUDIxc1YzTXUtUksyMnp6MVlxWVZB','','ru'],
+  ['https://res.cloudinary.com/dvob5n3ls/image/upload/v1795517363/WhatsApp_Image_2026-11-24_at_04.45.49_1_hydxqj.jpg','Tree Planting Sessions','ru'],
+  ['https://res.cloudinary.com/dvob5n3ls/image/upload/v1795517350/WhatsApp_Image_2026-11-24_at_04.45.50_mjnhdz.jpg','Engaging students in tree planting activities','ru'],
+  ['https://res.cloudinary.com/dvob5n3ls/image/upload/v1795517316/WhatsApp_Image_2026-11-24_at_04.45.50_2_qnfhmp.jpg','Chake Family Participating in planting trees','ru'],
+  ['https://res.cloudinary.com/dvob5n3ls/image/upload/v1795517290/WhatsApp_Image_2026-11-24_at_04.45.51_1_zcs0wf.jpg','Chake distributing happiness amongst children','ru'],
+  ['https://res.cloudinary.com/dvob5n3ls/image/upload/v1795517304/WhatsApp_Image_2026-11-24_at_04.45.51_gbhtub.jpg','','ru'],
  ['https://trial-phase.vercel.app/_next/image?url=%2Fimages%2Fhome%2Fskills-development-overview.jpeg&w=1200&q=75','','rr']];
 
 
@@ -28,18 +28,17 @@ const tests=[
  ['"The CHAKE sessions opened conversations in our school that nobody dared to start."','Dr. Karen Otieno','Education','https://www.kechangeambassadors.org/_next/image?url=%2Fimages%2Fabout%2Fteam%2Fkaren-atieno.jpeg&w=96&q=75']];
  
 const team=[
- ['Director','Elizabeth Achieng Odero','https://www.kechangeambassadors.org/_next/image?url=%2Fimages%2Fabout%2Fteam%2Felizabeth-achieng-odero.jpeg&w=96&q=75'],
- ['Treasure','Ms. Frida Adhiambo Okeyo','https://www.kechangeambassadors.org/_next/image?url=%2Fimages%2Fabout%2Fteam%2Ffrida-okeyo.jpeg&w=96&q=75'],
- ['Organizing Secretary','Dr. Caren Adhiambo Otieno','https://www.kechangeambassadors.org/_next/image?url=%2Fimages%2Fabout%2Fteam%2Fcaren-adhiambo-otieno.jpeg&w=96&q=75'],
- ['Education','Dr. Karen Otieno','https://www.kechangeambassadors.org/_next/image?url=%2Fimages%2Fabout%2Fteam%2Fkaren-atieno.jpeg&w=96&q=75'],
- ['Project Manager','Dr. Henric Ibsen','https://www.kechangeambassadors.org/_next/image?url=%2Fimages%2Fabout%2Fteam%2Fibsen-henric-ongidi.jpeg&w=96&q=75'],
- ['Communication Officer','Reinhard Otieno','https://www.kechangeambassadors.org/_next/image?url=%2Fimages%2Fabout%2Fteam%2Freinhard-otieno.jpeg&w=96&q=75'],
- ['Secretary','Paskalia Akinyi','https://www.kechangeambassadors.org/_next/image?url=%2Fimages%2Fabout%2Fteam%2Fpaskalia-glory-akinyi.jpeg&w=96&q=75'],
- ['Medical Doctor','Dr. Noel Curt Odero','https://www.kechangeambassadors.org/_next/image?url=%2Fimages%2Fabout%2Fteam%2Fnoel-curt-odero.jpeg&w=96&q=75'],
- ['Assistant Secretary','Solet Amondi Saoke','https://www.kechangeambassadors.org/_next/image?url=%2Fimages%2Fabout%2Fteam%2Fsolet-bunde.jpeg&w=96&q=75'],
- ['Assistant Youth Coordinator','Maryann Otieno','https://www.kechangeambassadors.org/_next/image?url=%2Fimages%2Fabout%2Fteam%2Fmaryanne-adhiambo.jpeg&w=96&q=75'],
+ ['Founding Director','Elizabeth Achieng Odero','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516579/WhatsApp_Image_2026-11-24_at_00.56.00_2_puhttx.jpg'],
+ ['Treasure','Ms. Frida Adhiambo Okeyo','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516548/WhatsApp_Image_2026-11-24_at_02.23.02_2_f9abk0.jpg'],
+ ['Organizing Secretary','Dr. Caren Adhiambo Otieno','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516621/WhatsApp_Image_2026-11-24_at_00.55.59_2_tdykhq.jpg'],
+ ['Education','Dr. Karen Otieno','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516594/WhatsApp_Image_2026-11-24_at_00.56.00_1_jaqfqf.jpg'],
+ ['Project Manager','Dr. Henric Ibsen','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516607/WhatsApp_Image_2026-11-24_at_00.56.00_znh2pi.jpg'],
+ ['Secretary','Paskalia Akinyi','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516648/WhatsApp_Image_2026-11-24_at_00.55.59_isvvwr.jpg'],
+ ['Medical Doctor','Dr. Noel Curt Odero','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516663/WhatsApp_Image_2026-11-24_at_00.55.58_2_hcmxf3.jpg'],
+ ['Assistant Secretary','Solet Amondi Saoke','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516634/WhatsApp_Image_2026-11-24_at_00.55.59_1_a9jrox.jpg'],
+ ['Assistant Youth Coordinator','Maryann Otieno','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516676/WhatsApp_Image_2026-11-24_at_00.55.58_1_euaawy.jpg'],
 
- ['Youth Coordinator','Isaac Owuor','https://www.kechangeambassadors.org/_next/image?url=%2Fimages%2Fabout%2Fteam%2Fisaac-opiyo.jpeg&w=96&q=75']];
+ ['Youth Coordinator','Isaac Owuor','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516689/WhatsApp_Image_2026-11-24_at_00.55.58_vpwyxo.jpg']];
 
 
 
@@ -48,6 +47,7 @@ const team=[
 const partners=[
  ['Rongo University','data:image/webp;base64,UklGRqYEAABXRUJQVlA4IJoEAAAQFQCdASpkAGQAPp1MoUulpCMhppgI0LATiWUA1iizx4D+xRnH22L7mF88ye6N/DvvP+DKa0tivRtQJUd8Y6BXO49Kewb0kvRpWw/UxMb6LvXmsn1DGVwJXFoWFHGb1jVNa46ADxVHrBN8ASBXf+gCeSEnRMuAOZOsEk2ZbMZPz4ApIxMaWNOZdcZiRWlK5L6JAQAOxjf14g5bIPb/l7PLjBaVuj+1Dt3tZvvgeq8jTGAA/vxKAAAQzHnbRcPsS6pQCb7dnsiUUhhsADzQaHdY/eLoHjrOLBiIj8ACURVEVNtFdhp5cx1f/Z391vYmIp+0mZQ6DwP0i9cZZvG6qFwE1+Ek4bmNaGrnCafPYgDwNC+9nTKrtJ49+stKrWsLCrwv5s84ifyEDuRQ+wV3oHf94l8N7VPp/WBIo7jwuyLxNJEq5GQbLaZcUlI7BFeGK3orEIKjxPGPi97NM9bxjoHpa+9SRdNML2UVr1MpsmkIdsT+EeQpsjXto5zFGDEXYHLJlrnkWMAR1D3zuR3fisphz+MFh4n9YXJWqO08/nT6RfJoN+QaQdtcqIo+7QFzrC1d9aXNuWpwPC+IHpTFs1B1kHGzLac08YShxfx8yST8PkI9Ln5Eqd1dWn/btGE7gwXb7ZdRo4CdZaXYvcnO+N61BbYMSsSNGxDpm3Gat17/7mR9cd7cUI1hXAuuKQ+b/rwTRnfNLiCNdL0PGW9GtvwHn5rxELJ60CKVo45XL2cLgyIbtjncdj5p4HsnXq8yUWMCDOivGtwMyllWgBImrMKwdFD24OdTTdU/Kt0ok/krTeFJ4dlhlKzdT9zojnNw4Eomt5bZ85HJibWOf8TRXEb4H+WfuTo9oN5PG7JUb1srBXC1saXfEb70n/XVXR+8Fh3SDlaDIUBA16nJ5CK4hzduk162ko/5en7rGedCb6zoHTcBZtYhjorBAiLb+QHlps3uEFjuOLH8b+LQbSilM3Mq6vMLDbxE8NKW7te303jXchXo8xij/2BR8reJEKa6CqQdk/ZNkn0WuNx2dWisVv7g/34DRgN2kkA7JFPTHaVH1ABGD4Xibh4VovbDXtJR13+y75uEQVp5LlDF6jNE7AFU3r4JD8kAmqwMhv/FNTbVcmrvNPwzzu9ACyI36VIPKSe7RVySdhKOYXjjp/etQ34VpfCCi9vyXp0wlci/E/zl3xX92Uoc3aYs+ZU/e5cY/CORCWKHcJ7z1QmUHN3+8td/ZkJs2d37s6kAAc2urjwj7NDG8ACEseh+wq0NhJ4phGSbaAe1lJSQF9Cghau6sVGXbU2drpsn2Wi3Ex59ZGcBLmkmG62U/rSeDIjUbdPtoXJTLesMVq/qDBpYvVBWtRpr8+LQqBH2s/GCdBY1ffGb604YhkRHImKzBamIABNKEWxRgbo98+Ht3cb2cSFbdVKlR9qMv8zc1YJYROG1t99gT5RRQLXKD/WPZVakEBofhxMsxnhCEkAGrwAsca1cQwtDnLCtU7CE9xNbcPF/HH85YocVLC57zvirFpqRKIE+b36XdtV+QpLNaFyRtJQMEHSce58jmmoAAAAAAA=='],
  ['Homa Bay County','https://www.bing.com/th/id/OIP.rV-1ifKjbGtQ58zFT4lmdAHaHa?w=193&h=193&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=ImgAns&rm=2']
+  ['Kilimo Bila Stress','https://res.cloudinary.com/dvob5n3ls/image/upload/v1795516967/WhatsApp_Image_2026-11-23_at_10.48.12_kt3deu.jpg']
 ];
 
 const $=s=>document.querySelector(s);
